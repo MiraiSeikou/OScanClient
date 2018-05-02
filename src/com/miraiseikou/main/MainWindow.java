@@ -80,14 +80,8 @@ public class MainWindow extends JFrame implements ActionListener{
             StringBuilder builder = new StringBuilder();
             builder.append("api/Usuarios/").append(name).append("/").append(pass);
             RestManager manager = new RestManager(builder.toString());
+            HttpURLConnection con = manager.getConnection();
             try {
-                String url = builder.toString();
-                URL obj = new URL(url);
-                HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
-                // optional default is GET
-                con.setRequestMethod("GET");
-
                 if (con.getResponseCode() == 200) {
                     MainTray mainTray = new MainTray(new BasicModule());
                     mainTray.init();

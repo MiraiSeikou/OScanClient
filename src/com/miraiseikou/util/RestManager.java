@@ -68,8 +68,20 @@ public class RestManager {
         }
     }
     
-    public void getConnection() {
-        
+    public HttpURLConnection getConnection() {
+        HttpURLConnection urlConnection = null;
+        try {
+            urlConnection = (HttpURLConnection) path.openConnection();
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setDoOutput(true);
+            urlConnection.setUseCaches(false);
+            urlConnection.setConnectTimeout(10000);
+            urlConnection.setReadTimeout(10000);
+            urlConnection.setRequestProperty("Content-Type","application/json");
+        } catch (IOException ex) {
+            Logger.getLogger(RestManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return urlConnection;
     }
     
 }

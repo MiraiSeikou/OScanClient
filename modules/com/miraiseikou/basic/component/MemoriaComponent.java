@@ -18,7 +18,7 @@ public class MemoriaComponent extends Component {
     private SystemInfo si = new SystemInfo();
     
     public MemoriaComponent(int time) {
-        super(time, "http://oscanapi.azurewebsites.net/api/Memorias");
+        super(time, "api/Memorias");
     }
 
     @Override
