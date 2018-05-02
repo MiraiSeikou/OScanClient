@@ -6,15 +6,13 @@
 package com.miraiseikou.main;
 
 import com.miraiseikou.basic.BasicModule;
+import com.miraiseikou.util.RestManager;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -79,8 +77,11 @@ public class MainWindow extends JFrame implements ActionListener{
             JOptionPane.showMessageDialog(this, "Campos não preenchidos",
                         "Error", JOptionPane.ERROR_MESSAGE);
         } else {
+            StringBuilder builder = new StringBuilder();
+            builder.append("api/Usuarios/").append(name).append("/").append(pass);
+            RestManager manager = new RestManager(builder.toString());
             try {
-                String url = "http://oscanapi.azurewebsites.net/api/Usuarios/" + name + "/" + pass;
+                String url = builder.toString();
                 URL obj = new URL(url);
                 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 

@@ -5,26 +5,31 @@
  */
 package com.miraiseikou.basic.component;
 
+import com.miraiseikou.basic.model.Memoria;
 import com.miraiseikou.core.Component;
+import java.sql.Timestamp;
+import oshi.SystemInfo;
 
 /**
  *
  * @author jvlima
  */
 public class MemoriaComponent extends Component {
-
+    private SystemInfo si = new SystemInfo();
+    
     public MemoriaComponent(int time) {
-        super(time);
+        super(time, "http://oscanapi.azurewebsites.net/api/Memorias");
     }
 
     @Override
-    protected void collect() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    protected void send() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    protected Object collect() {
+        Memoria m = new Memoria();
+        m.setTotal(si.getHardware().getMemory().getTotal());
+        m.setAvailable(si.getHardware().getMemory().getAvailable());
+        m.setSwapTotal(si.getHardware().getMemory().getSwapTotal());
+        m.setSwapAvailable(si.getHardware().getMemory().getSwapUsed());
+        m.setMomentum(new Timestamp(System.currentTimeMillis()));
+        return m;
     }
     
 }

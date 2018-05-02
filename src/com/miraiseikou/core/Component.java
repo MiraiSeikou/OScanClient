@@ -5,6 +5,7 @@
  */
 package com.miraiseikou.core;
 
+import com.miraiseikou.util.RestManager;
 import javax.swing.Timer;
 
 /**
@@ -14,10 +15,12 @@ import javax.swing.Timer;
 public abstract class Component {
     
     private final int time;
+    private final String route;
     private Timer timer;
 
-    public Component(int time) {
+    public Component(int time, String route) {
         this.time = time;
+        this.route = route;
         run();
     }
     
@@ -28,19 +31,24 @@ public abstract class Component {
         });
     }
     
-    public void start() {
+    public final void start() {
         timer.start();
     }
     
-    public void stop() {
+    public final void stop() {
         timer.stop();
     }
     
-    public void restart() {
+    public final void restart() {
         timer.restart();
     }
     
-    protected abstract void collect();
-    protected abstract void send();
+    protected abstract Object collect();
+    
+    private void send(){
+        Object pojo = collect();
+        RestManager manager = new RestManager(route);
+        manager.postConnection(pojo);
+    }
     
 }

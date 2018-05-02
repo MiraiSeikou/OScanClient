@@ -43,24 +43,31 @@ public class MainTray {
         MenuItem exitItem = new MenuItem("Exit");
         
         startItem.addActionListener((e) -> {
-            trayIcon.setImage(Toolkit.getDefaultToolkit().getImage("res/images/Design_1.png"));
+            trayIcon.setImage(getImage("res/images/Design_1.png"));
+            monitor.start();
         });
+        
         stopItem.addActionListener((e) -> {
-            trayIcon.setImage(Toolkit.getDefaultToolkit().getImage("res/images/Design_2.png"));
+            trayIcon.setImage(getImage("res/images/Design_2.png"));
+            monitor.stop();
         });
+        
         restartItem.addActionListener((e) -> {
-            trayIcon.setImage(Toolkit.getDefaultToolkit().getImage("res/images/Design_2.png"));
+            trayIcon.setImage(getImage("res/images/Design_2.png"));
             try {
                 Thread.sleep(10000);
             } catch (InterruptedException ex) {
                 Logger.getLogger(MainTray.class.getName()).log(Level.SEVERE, null, ex);
             }
-            trayIcon.setImage(Toolkit.getDefaultToolkit().getImage("res/images/Design_1.png"));
+            monitor.restart();
+            trayIcon.setImage(getImage("res/images/Design_1.png"));
         });
+        
         settingsItem.addActionListener((e) -> {
             SettingsWindow settings = new SettingsWindow();
             settings.setVisible(true);
         });
+        
         exitItem.addActionListener((e) -> {
             System.exit(0);
         });
@@ -71,15 +78,19 @@ public class MainTray {
         popup.add(settingsItem);
         popup.add(exitItem);
 
-        trayIcon = new TrayIcon(image, "OScanTray", popup);
+        trayIcon = new TrayIcon(image, "OScan", popup);
 
         trayIcon.setImageAutoSize(true);
 
         try {
             tray.add(trayIcon);
         } catch (AWTException e) {
-            System.err.println("TrayIcon could not be added.");
+            System.err.println("TrayIcon pode ser adicionado.");
         }
+    }
+    
+    private Image getImage(String filename) {
+        return Toolkit.getDefaultToolkit().getImage(filename);
     }
     
 }
