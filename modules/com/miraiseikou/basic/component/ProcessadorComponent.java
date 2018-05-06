@@ -5,7 +5,10 @@
  */
 package com.miraiseikou.basic.component;
 
+import com.miraiseikou.basic.model.Processador;
 import com.miraiseikou.core.Component;
+import com.miraiseikou.util.Collector;
+import java.sql.Timestamp;
 
 /**
  *
@@ -13,13 +16,17 @@ import com.miraiseikou.core.Component;
  */
 public class ProcessadorComponent extends Component {
 
-    public ProcessadorComponent(int time, String route) {
-        super(time, route);
+    public ProcessadorComponent(int time) {
+        super(time, "api/Processadors");
     }
 
     @Override
     protected Object collect() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Processador processador = new Processador();
+        processador.setUsage(Collector.getInstance().getCpuLoad());
+        processador.setMomentum(new Timestamp(System.currentTimeMillis()));
+        processador.setIdMaquina(1);
+        return processador;
     }
     
 }

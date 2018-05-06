@@ -5,7 +5,10 @@
  */
 package com.miraiseikou.basic;
 
+import com.miraiseikou.basic.component.DiscoComponent;
 import com.miraiseikou.basic.component.MemoriaComponent;
+import com.miraiseikou.basic.component.ProcessadorComponent;
+import com.miraiseikou.core.Component;
 import com.miraiseikou.core.Module;
 
 /**
@@ -20,5 +23,7 @@ public class BasicModule extends Module {
 
     private void init() {
         addComponent(new MemoriaComponent(1000));
+        addComponent(new DiscoComponent(1000));
+        addComponent(new ProcessadorComponent(1000));
     }
 }

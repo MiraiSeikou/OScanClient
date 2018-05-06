@@ -5,7 +5,10 @@
  */
 package com.miraiseikou.basic.component;
 
+import com.miraiseikou.basic.model.Disco;
 import com.miraiseikou.core.Component;
+import com.miraiseikou.util.Collector;
+import java.sql.Timestamp;
 
 /**
  *
@@ -13,13 +16,18 @@ import com.miraiseikou.core.Component;
  */
 public class DiscoComponent extends Component {
 
-    public DiscoComponent(int time, String route) {
-        super(time, route);
+    public DiscoComponent(int time) {
+        super(time, "api/Discoes");
     }
     
     @Override
     protected Object collect() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Disco disco = new Disco();
+        disco.setAvailable(Collector.getInstance().getHDAvailable());
+        disco.setTotal(Collector.getInstance().getHDTotal());
+        disco.setMomentum(new Timestamp(System.currentTimeMillis()));
+        disco.setIdMaquina(1);
+        return disco;
     }
     
 }

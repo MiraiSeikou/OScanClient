@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -21,7 +22,7 @@ import org.json.JSONObject;
  * @author jvlima
  */
 public class RestManager {
-    private final String host = "http://oscanapi.azurewebsites.net/";
+    private final String host = "http://oscanwebapi.azurewebsites.net/";
     private URL path;
     public RestManager(String route) {
         init(route);
@@ -48,6 +49,8 @@ public class RestManager {
             urlConnection.setRequestProperty("Content-Type","application/json");
             try (OutputStreamWriter out = new OutputStreamWriter(urlConnection.getOutputStream())) {
                 out.write(obj.toString());
+            } catch (IOException ex) {
+                Logger.getLogger(RestManager.class.getName()).log(Level.SEVERE, null, ex);
             }
             
             int HttpResult = urlConnection.getResponseCode();  
@@ -58,6 +61,8 @@ public class RestManager {
                     while ((line = br.readLine()) != null) {
                         sb.append(line).append("\n");
                     }
+                } catch (UnsupportedEncodingException ex) {
+                    Logger.getLogger(RestManager.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 System.out.println(sb.toString());
             }else{  
@@ -65,7 +70,7 @@ public class RestManager {
             }
         } catch (IOException ex) {
             Logger.getLogger(RestManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } 
     }
     
     public HttpURLConnection getConnection() {

@@ -5,21 +5,86 @@
  */
 package com.miraiseikou.basic.model;
 
-import com.miraiseikou.core.Component;
+import java.sql.Timestamp;
 
 /**
  *
  * @author jvlima
  */
-public class Disco extends Component {
+public class Disco {
+    private int Id;
+    private long Total;
+    private long Available;
+    private Timestamp Momentum;
+    private int IdMaquina;  
 
-    public Disco(int time, String route) {
-        super(time, route);
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return Id;
     }
 
-    @Override
-    protected Object collect() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.Id = id;
     }
-    
+
+    /**
+     * @return the Total
+     */
+    public long getTotal() {
+        return Total;
+    }
+
+    /**
+     * @param Total the Total to set
+     */
+    public void setTotal(long Total) {
+        this.Total = Total;
+    }
+
+    /**
+     * @return the Available
+     */
+    public long getAvailable() {
+        return Available;
+    }
+
+    /**
+     * @param Available the Available to set
+     */
+    public void setAvailable(long Available) {
+        this.Available = Available;
+    }
+
+    /**
+     * @return the Momentum
+     */
+    public Timestamp getMomentum() {
+        return Momentum;
+    }
+
+    /**
+     * @param Momentum the Momentum to set
+     */
+    public void setMomentum(Timestamp Momentum) {
+        this.Momentum = Momentum;
+    }
+
+    /**
+     * @return the IdMaquina
+     */
+    public int getIdMaquina() {
+        return IdMaquina;
+    }
+
+    /**
+     * @param IdMaquina the IdMaquina to set
+     */
+    public void setIdMaquina(int IdMaquina) {
+        this.IdMaquina = IdMaquina;
+    }
 }

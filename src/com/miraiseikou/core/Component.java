@@ -32,10 +32,16 @@ public abstract class Component {
     }
     
     public final void start() {
+        if (timer.isRunning()) {
+            return;
+        }
         timer.start();
     }
     
     public final void stop() {
+        if (!timer.isRunning()) {
+            return;
+        }
         timer.stop();
     }
     
@@ -46,9 +52,18 @@ public abstract class Component {
     protected abstract Object collect();
     
     private void send(){
-        Object pojo = collect();
+        Object obj = collect();
         RestManager manager = new RestManager(route);
-        manager.postConnection(pojo);
+        manager.postConnection(obj);
+    }
+    
+    public void setTime(int time) {
+        timer.setDelay(time);
+        restart();
+    }
+    
+    public int getTime() {
+        return time;
     }
     
 }

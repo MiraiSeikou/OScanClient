@@ -23,13 +23,14 @@ public class MemoriaComponent extends Component {
 
     @Override
     protected Object collect() {
-        Memoria m = new Memoria();
-        m.setTotal(si.getHardware().getMemory().getTotal());
-        m.setAvailable(si.getHardware().getMemory().getAvailable());
-        m.setSwapTotal(si.getHardware().getMemory().getSwapTotal());
-        m.setSwapAvailable(si.getHardware().getMemory().getSwapUsed());
-        m.setMomentum(new Timestamp(System.currentTimeMillis()));
-        return m;
+        Memoria memoria = new Memoria();
+        memoria.setTotal(si.getHardware().getMemory().getTotal());
+        memoria.setAvailable(si.getHardware().getMemory().getAvailable());
+        memoria.setSwapTotal(si.getHardware().getMemory().getSwapTotal());
+        memoria.setSwapAvailable(si.getHardware().getMemory().getSwapUsed());
+        memoria.setMomentum(new Timestamp(System.currentTimeMillis()));
+        memoria.setIdMaquina(1);
+        return memoria;
     }
     
 }

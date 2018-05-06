@@ -5,14 +5,13 @@
  */
 package com.miraiseikou.main;
 
-import com.miraiseikou.basic.BasicModule;
+import com.miraiseikou.core.Module;
 import com.miraiseikou.util.RestManager;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.net.URL;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -83,14 +82,15 @@ public class MainWindow extends JFrame implements ActionListener{
             HttpURLConnection con = manager.getConnection();
             try {
                 if (con.getResponseCode() == 200) {
-                    MainTray mainTray = new MainTray(new BasicModule());
+                    Module module = (Module) Class.forName("com.miraiseikou.basic.BasicModule").newInstance();
+                    MainTray mainTray = new MainTray(module);
                     mainTray.init();
                     this.setVisible(false);
                 } else {
                     JOptionPane.showMessageDialog(this, "Usuário e/ou senha incorretos",
                             "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            } catch (IOException ex) {
+            } catch (IOException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
                 throw new RuntimeException(ex);
             }
         }
