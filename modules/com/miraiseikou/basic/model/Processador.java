@@ -5,17 +5,17 @@
  */
 package com.miraiseikou.basic.model;
 
+import com.miraiseikou.core.model.Padrao;
 import java.sql.Timestamp;
 
 /**
  *
  * @author jvlima
  */
-public class Processador {
+public class Processador extends Padrao {
     private int Id;
     private double Usage;
-    private Timestamp Momentum;
-    private int IdMaquina;  
+    private Timestamp Momentum; 
 
     /**
      * @return the Id
@@ -57,19 +57,5 @@ public class Processador {
      */
     public void setMomentum(Timestamp Momentum) {
         this.Momentum = Momentum;
-    }
-
-    /**
-     * @return the IdMaquina
-     */
-    public int getIdMaquina() {
-        return IdMaquina;
-    }
-
-    /**
-     * @param IdMaquina the IdMaquina to set
-     */
-    public void setIdMaquina(int IdMaquina) {
-        this.IdMaquina = IdMaquina;
     }
 }

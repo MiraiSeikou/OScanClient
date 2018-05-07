@@ -5,18 +5,19 @@
  */
 package com.miraiseikou.basic.model;
 
+import com.miraiseikou.core.model.Padrao;
 import java.sql.Timestamp;
 
 /**
  *
  * @author jvlima
  */
-public class Disco {
+public class Disco extends Padrao {
     private int Id;
     private long Total;
     private long Available;
     private Timestamp Momentum;
-    private int IdMaquina;  
+      
 
     /**
      * @return the id
@@ -72,19 +73,5 @@ public class Disco {
      */
     public void setMomentum(Timestamp Momentum) {
         this.Momentum = Momentum;
-    }
-
-    /**
-     * @return the IdMaquina
-     */
-    public int getIdMaquina() {
-        return IdMaquina;
-    }
-
-    /**
-     * @param IdMaquina the IdMaquina to set
-     */
-    public void setIdMaquina(int IdMaquina) {
-        this.IdMaquina = IdMaquina;
     }
 }

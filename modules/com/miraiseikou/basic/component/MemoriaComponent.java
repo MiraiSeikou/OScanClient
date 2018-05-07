@@ -7,6 +7,7 @@ package com.miraiseikou.basic.component;
 
 import com.miraiseikou.basic.model.Memoria;
 import com.miraiseikou.core.Component;
+import com.miraiseikou.core.model.Padrao;
 import java.sql.Timestamp;
 import oshi.SystemInfo;
 
@@ -22,7 +23,7 @@ public class MemoriaComponent extends Component {
     }
 
     @Override
-    protected Object collect() {
+    protected Padrao collect() {
         Memoria memoria = new Memoria();
         memoria.setTotal(si.getHardware().getMemory().getTotal());
         memoria.setAvailable(si.getHardware().getMemory().getAvailable());

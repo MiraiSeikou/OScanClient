@@ -7,6 +7,7 @@ package com.miraiseikou.basic.component;
 
 import com.miraiseikou.basic.model.Processador;
 import com.miraiseikou.core.Component;
+import com.miraiseikou.core.model.Padrao;
 import com.miraiseikou.util.Collector;
 import java.sql.Timestamp;
 
@@ -21,7 +22,7 @@ public class ProcessadorComponent extends Component {
     }
 
     @Override
-    protected Object collect() {
+    protected Padrao collect() {
         Processador processador = new Processador();
         processador.setUsage(Collector.getInstance().getCpuLoad());
         processador.setMomentum(new Timestamp(System.currentTimeMillis()));

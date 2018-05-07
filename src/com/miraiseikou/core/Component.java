@@ -5,6 +5,8 @@
  */
 package com.miraiseikou.core;
 
+import com.miraiseikou.core.model.Maquina;
+import com.miraiseikou.core.model.Padrao;
 import com.miraiseikou.util.RestManager;
 import javax.swing.Timer;
 
@@ -49,10 +51,11 @@ public abstract class Component {
         timer.restart();
     }
     
-    protected abstract Object collect();
+    protected abstract Padrao collect();
     
     private void send(){
-        Object obj = collect();
+        Padrao obj = collect();
+        obj.setIdMaquina(Maquina.getInstance().getId());
         RestManager manager = new RestManager(route);
         manager.postRequest(obj);
     }

@@ -5,20 +5,20 @@
  */
 package com.miraiseikou.basic.model;
 
+import com.miraiseikou.core.model.Padrao;
 import java.sql.Timestamp;
 
 /**
  *
  * @author jvlima
  */
-public class Memoria {
+public class Memoria extends Padrao {
     private int Id;
     private long Total;
     private long Available;
     private long SwapTotal;
     private long SwapAvailable;
     private Timestamp Momentum;
-    private int IdMaquina;  
 
     /**
      * @return the Id
@@ -88,20 +88,6 @@ public class Memoria {
      */
     public void setSwapAvailable(long SwapAvailable) {
         this.SwapAvailable = SwapAvailable;
-    }
-
-    /**
-     * @return the IdMaquina
-     */
-    public int getIdMaquina() {
-        return IdMaquina;
-    }
-
-    /**
-     * @param IdMaquina the IdMaquina to set
-     */
-    public void setIdMaquina(int IdMaquina) {
-        this.IdMaquina = IdMaquina;
     }
 
     /**

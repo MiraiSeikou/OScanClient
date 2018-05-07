@@ -5,16 +5,32 @@
  */
 package com.miraiseikou.core.model;
 
+import com.miraiseikou.util.Collector;
+
 /**
  *
  * @author jvlima
  */
 public class Maquina {
+    private static Maquina instance;
     private int Id;
     private String Nome;
     private String OSName;
     private String MacAddr;
     private int IdUsuario;
+    
+    private Maquina() {
+        Nome = Collector.getInstance().getHostName();
+        OSName = Collector.getInstance().getOSName();
+        MacAddr = Collector.getInstance().getMacAddres();
+    }
+    
+    public static Maquina getInstance() {
+        if (instance == null) {
+            instance = new Maquina();
+        }
+        return instance;
+    }
 
     /**
      * @return the Id
@@ -85,4 +101,5 @@ public class Maquina {
     public void setIdUsuario(int IdUsuario) {
         this.IdUsuario = IdUsuario;
     }
+
 }

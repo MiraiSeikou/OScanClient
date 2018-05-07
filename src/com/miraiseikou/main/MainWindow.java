@@ -7,6 +7,7 @@ package com.miraiseikou.main;
 
 import com.miraiseikou.core.Module;
 import com.miraiseikou.core.model.Assinatura;
+import com.miraiseikou.core.model.Maquina;
 import com.miraiseikou.core.model.Usuario;
 import com.miraiseikou.util.RestManager;
 import java.awt.Font;
@@ -85,10 +86,23 @@ public class MainWindow extends JFrame implements ActionListener{
                 if (manager.getStatusCode() == 200) {
                     Usuario usuario = manager.converter(Usuario.class);
                     RestManager restManager = new RestManager();
+                    Object object = new Object();
                     restManager.setRoute("api/Assinaturas/" + usuario.getIdAssinatura());
                     restManager.getRequest();
                     Assinatura assinatura = restManager.converter(Assinatura.class);
                     Module module = (Module) Class.forName(assinatura.getPacote()).newInstance();
+                    RestManager m = new RestManager("api/Maquinas/" + Maquina.getInstance().getMacAddr());
+                    if (m.getStatusCode() == 200) {
+                        Maquina maquina = restManager.converter(Maquina.class);
+                        Maquina.getInstance().setId(maquina.getId());
+                        Maquina.getInstance().setIdUsuario(maquina.getIdUsuario());
+                    } else {
+                        Maquina.getInstance().setIdUsuario(usuario.getId());
+                        RestManager rest = new RestManager("api/Maquinas");
+                        rest.postRequest(Maquina.getInstance());
+                        Maquina maquina = restManager.converter(Maquina.class);
+                        Maquina.getInstance().setId(maquina.getId());
+                    }
                     MainTray mainTray = new MainTray(module);
                     mainTray.init();
                     this.setVisible(false);
