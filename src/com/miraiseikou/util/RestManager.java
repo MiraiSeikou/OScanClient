@@ -5,17 +5,16 @@
  */
 package com.miraiseikou.util;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.json.JSONObject;
+import java.lang.reflect.Type;
+import org.apache.http.client.methods.*;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.*;
+import org.apache.http.util.EntityUtils;
 
 /**
  *
@@ -23,70 +22,103 @@ import org.json.JSONObject;
  */
 public class RestManager {
     private final String host = "http://oscanwebapi.azurewebsites.net/";
-    private URL path;
-    public RestManager(String route) {
-        init(route);
-    }
-
-    private void init(String route) {
-        try {
-            path = new URL(host+route);
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(RestManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    private String route;
+    private int statusCode;
+    private String body;
+    private GsonBuilder gbuilder;
+    private Gson gson;
+    
+    public RestManager() {
+        this.statusCode = 0;
+        this.body = "";
+        gbuilder = new GsonBuilder();
+        gbuilder.setLenient();
+        gson = gbuilder.create();
     }
     
-    public void postConnection(Object pojo) {
-        StringBuilder sb = new StringBuilder();
-        JSONObject obj = new JSONObject(pojo);
-        try {
-            HttpURLConnection urlConnection = (HttpURLConnection) path.openConnection();
-            urlConnection.setRequestMethod("POST");
-            urlConnection.setDoOutput(true);
-            urlConnection.setUseCaches(false);
-            urlConnection.setConnectTimeout(10000);
-            urlConnection.setReadTimeout(10000);
-            urlConnection.setRequestProperty("Content-Type","application/json");
-            try (OutputStreamWriter out = new OutputStreamWriter(urlConnection.getOutputStream())) {
-                out.write(obj.toString());
-            } catch (IOException ex) {
-                Logger.getLogger(RestManager.class.getName()).log(Level.SEVERE, null, ex);
-            }
+    public RestManager(String route) {
+        this.route = route;
+        this.statusCode = 0;
+        this.body = "";
+        gbuilder = new GsonBuilder();
+        gbuilder.setLenient();
+        gson = gbuilder.create();
+    }
+    
+    public void postRequest(Object pojo) {
+        String path = host+getRoute();
+        try (CloseableHttpClient client = HttpClients.createDefault()){
+            HttpPost postRequest = new HttpPost(path);
+            StringEntity input = new StringEntity(gson.toJson(pojo));
+            input.setContentType("application/json");
+            postRequest.setEntity(input);
+            CloseableHttpResponse response = client.execute(postRequest);
             
-            int HttpResult = urlConnection.getResponseCode();  
-            if(HttpResult == HttpURLConnection.HTTP_OK){  
-                try (BufferedReader br = new BufferedReader(new InputStreamReader(  
-                        urlConnection.getInputStream(),"utf-8"))) {
-                    String line;
-                    while ((line = br.readLine()) != null) {
-                        sb.append(line).append("\n");
-                    }
-                } catch (UnsupportedEncodingException ex) {
-                    Logger.getLogger(RestManager.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                System.out.println(sb.toString());
-            }else{  
-                System.out.println(urlConnection.getResponseMessage());  
+            statusCode = response.getStatusLine().getStatusCode();
+            BufferedReader br = new BufferedReader(
+                    new InputStreamReader(response.getEntity().getContent()));
+            String output;
+            while ((output = br.readLine()) != null) {
+                body += (output);
             }
         } catch (IOException ex) {
-            Logger.getLogger(RestManager.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException(ex);
         } 
     }
     
-    public HttpURLConnection getConnection() {
-        HttpURLConnection urlConnection = null;
-        try {
-            urlConnection = (HttpURLConnection) path.openConnection();
-            urlConnection.setRequestMethod("GET");
-            urlConnection.setDoOutput(true);
-            urlConnection.setUseCaches(false);
-            urlConnection.setConnectTimeout(10000);
-            urlConnection.setReadTimeout(10000);
-            urlConnection.setRequestProperty("Content-Type","application/json");
+    public void getRequest() {
+        String path = host+getRoute();
+        try(CloseableHttpClient client = HttpClients.createDefault()){
+            HttpGet getRequest = new HttpGet(path);
+            getRequest.addHeader("accept", "application/json");
+            CloseableHttpResponse response = client.execute(getRequest);
+            statusCode = response.getStatusLine().getStatusCode();
+            BufferedReader br = new BufferedReader(
+                    new InputStreamReader(response.getEntity().getContent()));
+            String output;
+            while ((output = br.readLine()) != null) {
+                body += (output);
+            }
+            EntityUtils.consume(response.getEntity());
         } catch (IOException ex) {
-            Logger.getLogger(RestManager.class.getName()).log(Level.SEVERE, null, ex);
+            throw new RuntimeException(ex);
         }
-        return urlConnection;
+    }
+    
+    public <T> T converter(Type typeOfT) {
+        return (T) gson.fromJson(body, typeOfT);
+    }
+    
+    public <T> T converter(Class<T> classOfT) {
+        return (T) gson.fromJson(body, classOfT);
+    }
+
+    /**
+     * @return the route
+     */
+    public String getRoute() {
+        return route;
+    }
+
+    /**
+     * @param route the route to set
+     */
+    public void setRoute(String route) {
+        this.route = route;
+    }
+
+    /**
+     * @return the statusCode
+     */
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    /**
+     * @return the body
+     */
+    public String getBody() {
+        return body;
     }
     
 }

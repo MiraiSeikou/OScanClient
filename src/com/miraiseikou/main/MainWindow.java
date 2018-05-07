@@ -6,19 +6,18 @@
 package com.miraiseikou.main;
 
 import com.miraiseikou.core.Module;
+import com.miraiseikou.core.model.Assinatura;
+import com.miraiseikou.core.model.Usuario;
 import com.miraiseikou.util.RestManager;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.net.HttpURLConnection;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-
 /**
  *
  * @author jvlima
@@ -30,10 +29,10 @@ public class MainWindow extends JFrame implements ActionListener{
     JPasswordField p1;
 
     public MainWindow(){
-        init();
+        initComponents();
     }
 
-    private void init() {
+    private void initComponents() {
         l1 = new JLabel("OScan");
         l1.setFont(new Font("Serif", Font.BOLD, 20));
 
@@ -69,6 +68,8 @@ public class MainWindow extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent ae)
     {
+        RestManager manager = new RestManager();
+        
         String name = tf1.getText();
         String pass = String.copyValueOf(p1.getPassword());
         
@@ -78,11 +79,16 @@ public class MainWindow extends JFrame implements ActionListener{
         } else {
             StringBuilder builder = new StringBuilder();
             builder.append("api/Usuarios/").append(name).append("/").append(pass);
-            RestManager manager = new RestManager(builder.toString());
-            HttpURLConnection con = manager.getConnection();
+            manager.setRoute(builder.toString());
+            manager.getRequest();
             try {
-                if (con.getResponseCode() == 200) {
-                    Module module = (Module) Class.forName("com.miraiseikou.basic.BasicModule").newInstance();
+                if (manager.getStatusCode() == 200) {
+                    Usuario usuario = manager.converter(Usuario.class);
+                    RestManager restManager = new RestManager();
+                    restManager.setRoute("api/Assinaturas/" + usuario.getIdAssinatura());
+                    restManager.getRequest();
+                    Assinatura assinatura = restManager.converter(Assinatura.class);
+                    Module module = (Module) Class.forName(assinatura.getPacote()).newInstance();
                     MainTray mainTray = new MainTray(module);
                     mainTray.init();
                     this.setVisible(false);
@@ -90,7 +96,7 @@ public class MainWindow extends JFrame implements ActionListener{
                     JOptionPane.showMessageDialog(this, "Usuário e/ou senha incorretos",
                             "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            } catch (IOException | ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
                 throw new RuntimeException(ex);
             }
         }

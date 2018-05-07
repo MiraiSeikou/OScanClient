@@ -54,7 +54,7 @@ public abstract class Component {
     private void send(){
         Object obj = collect();
         RestManager manager = new RestManager(route);
-        manager.postConnection(obj);
+        manager.postRequest(obj);
     }
     
     public void setTime(int time) {

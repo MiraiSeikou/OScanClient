@@ -8,7 +8,6 @@
                 <root id="src.res.dir" name="Resources"/>
                 <root id="src.modules.dir" name="Módulos"/>
                 <root id="src.dir" name="Principal"/>
-                <root id="src.collector.dir" name="Coletor"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir"/>
