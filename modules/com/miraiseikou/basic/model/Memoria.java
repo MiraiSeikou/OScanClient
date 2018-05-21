@@ -5,20 +5,24 @@
  */
 package com.miraiseikou.basic.model;
 
-import com.miraiseikou.core.model.Padrao;
+import com.miraiseikou.core.Component;
 import java.sql.Timestamp;
 
 /**
  *
  * @author jvlima
  */
-public class Memoria extends Padrao {
+public class Memoria extends Component {
     private int Id;
     private long Total;
     private long Available;
     private long SwapTotal;
     private long SwapAvailable;
     private Timestamp Momentum;
+
+    public Memoria(String route) {
+        super(route);
+    }
 
     /**
      * @return the Id

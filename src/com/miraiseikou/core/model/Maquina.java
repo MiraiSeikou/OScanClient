@@ -5,101 +5,107 @@
  */
 package com.miraiseikou.core.model;
 
-import com.miraiseikou.util.Collector;
+import oshi.SystemInfo;
 
 /**
  *
  * @author jvlima
  */
 public class Maquina {
-    private static Maquina instance;
-    private int Id;
-    private String Nome;
-    private String OSName;
-    private String MacAddr;
-    private int IdUsuario;
-    
-    private Maquina() {
-        Nome = Collector.getInstance().getHostName();
-        OSName = Collector.getInstance().getOSName();
-        MacAddr = Collector.getInstance().getMacAddres();
-    }
-    
-    public static Maquina getInstance() {
-        if (instance == null) {
-            instance = new Maquina();
-        }
-        return instance;
+    private int id;
+    private String nome;
+    private String os;
+    private String serial;
+    private String macAddr;
+    private int idUsuario;
+
+    public Maquina() {
+        nome = new SystemInfo().getOperatingSystem().getNetworkParams().getHostName();
+        os = new SystemInfo().getOperatingSystem().getFamily();
+        serial = new SystemInfo().getHardware().getComputerSystem().getSerialNumber();
     }
 
     /**
-     * @return the Id
+     * @return the id
      */
     public int getId() {
-        return Id;
+        return id;
     }
 
     /**
-     * @param Id the Id to set
+     * @param id the id to set
      */
-    public void setId(int Id) {
-        this.Id = Id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
-     * @return the Nome
+     * @return the nome
      */
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
     /**
-     * @param Nome the Nome to set
+     * @param nome the nome to set
      */
-    public void setNome(String Nome) {
-        this.Nome = Nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     /**
-     * @return the OSName
+     * @return the os
      */
-    public String getOSName() {
-        return OSName;
+    public String getOs() {
+        return os;
     }
 
     /**
-     * @param OSName the OSName to set
+     * @param os the os to set
      */
-    public void setOSName(String OSName) {
-        this.OSName = OSName;
+    public void setOs(String os) {
+        this.os = os;
     }
 
     /**
-     * @return the MacAddr
+     * @return the serial
      */
-    public String getMacAddr() {
-        return MacAddr;
+    public String getSerial() {
+        return serial;
     }
 
     /**
-     * @param MacAddr the MacAddr to set
+     * @param serial the serial to set
      */
-    public void setMacAddr(String MacAddr) {
-        this.MacAddr = MacAddr;
+    public void setSerial(String serial) {
+        this.serial = serial;
     }
 
     /**
-     * @return the IdUsuario
+     * @return the idUsuario
      */
     public int getIdUsuario() {
-        return IdUsuario;
+        return idUsuario;
     }
 
     /**
-     * @param IdUsuario the IdUsuario to set
+     * @param idUsuario the idUsuario to set
      */
-    public void setIdUsuario(int IdUsuario) {
-        this.IdUsuario = IdUsuario;
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
+    /**
+     * @return the macAddr
+     */
+    public String getMacAddr() {
+        return macAddr;
+    }
+
+    /**
+     * @param macAddr the macAddr to set
+     */
+    public void setMacAddr(String macAddr) {
+        this.macAddr = macAddr;
+    }
 }

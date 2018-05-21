@@ -5,20 +5,23 @@
  */
 package com.miraiseikou.basic.model;
 
-import com.miraiseikou.core.model.Padrao;
+import com.miraiseikou.core.Component;
 import java.sql.Timestamp;
 
 /**
  *
  * @author jvlima
  */
-public class Disco extends Padrao {
+public class Disco extends Component {
     private int Id;
     private long Total;
     private long Available;
     private Timestamp Momentum;
-      
 
+    public Disco(String route) {
+        super(route);
+    }
+    
     /**
      * @return the id
      */

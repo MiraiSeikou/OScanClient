@@ -5,17 +5,21 @@
  */
 package com.miraiseikou.basic.model;
 
-import com.miraiseikou.core.model.Padrao;
+import com.miraiseikou.core.Component;
 import java.sql.Timestamp;
 
 /**
  *
  * @author jvlima
  */
-public class Processador extends Padrao {
+public class Processador extends Component {
     private int Id;
     private double Usage;
     private Timestamp Momentum; 
+
+    public Processador(String route) {
+        super(route);
+    }
 
     /**
      * @return the Id

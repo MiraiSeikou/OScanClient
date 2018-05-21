@@ -6,54 +6,44 @@
  */
 package com.miraiseikou.core;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.swing.Timer;
 
 /**
  *
  * @author jvlima
  */
 public abstract class Module {
-    private final List<Component> components;
-
+    private Monitor monitor;
+    private Timer timer;
+    
     public Module() {
-        this.components = new ArrayList<>();
+        init();
     }
     
-    public void addComponent(Component component) {
-        components.add(component);
+    private void init() {
+        this.monitor = loadMonitor();
+        timer = new Timer(1000, (e) -> {
+            monitor.run();
+        });
     }
     
-    public void addComponent(int index, Component component) {
-        components.add(index, component);
+    public abstract Monitor loadMonitor();
+    
+    public final void start() {
+        timer.start();
     }
     
-    public void removeComponent(Component component) {
-        components.remove(component);
+    public final void stop() {
+        timer.stop();
     }
     
-    public void removeComponent(int index) {
-        components.remove(index);
+    public final void restart() {
+        timer.restart();
+    }
+
+    public Monitor getMonitor() {
+        return monitor;
     }
     
-    public int size() {
-        return components.size();
-    }
-    
-    public void clear() {
-        components.clear();
-    }
-    
-    public Component get(int index) {
-        return components.get(index);
-    }
-    
-    public boolean contains(Component component) {
-        return components.contains(component);
-    }
-    
-    public List<Component> getComponents() {
-        return components;
-    }
     
 }

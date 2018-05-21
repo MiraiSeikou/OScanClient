@@ -5,68 +5,34 @@
  */
 package com.miraiseikou.core;
 
-import com.miraiseikou.core.model.Maquina;
-import com.miraiseikou.core.model.Padrao;
-import com.miraiseikou.util.RestManager;
-import javax.swing.Timer;
-
 /**
  *
  * @author jvlima
  */
 public abstract class Component {
-    
-    private final int time;
+    private int idMaquina;
     private final String route;
-    private Timer timer;
 
-    public Component(int time, String route) {
-        this.time = time;
+    public Component(String route) {
         this.route = route;
-        run();
     }
     
-    private void run() {
-        timer = new Timer(this.time, (e) -> {
-            collect();
-            send();
-        });
+    /**
+     * @return the idMaquina
+     */
+    public int getIdMaquina() {
+        return idMaquina;
     }
-    
-    public final void start() {
-        if (timer.isRunning()) {
-            return;
-        }
-        timer.start();
+
+    /**
+     * @param idMaquina the idMaquina to set
+     */
+    public void setIdMaquina(int idMaquina) {
+        this.idMaquina = idMaquina;
     }
-    
-    public final void stop() {
-        if (!timer.isRunning()) {
-            return;
-        }
-        timer.stop();
-    }
-    
-    public final void restart() {
-        timer.restart();
-    }
-    
-    protected abstract Padrao collect();
-    
-    private void send(){
-        Padrao obj = collect();
-        obj.setIdMaquina(Maquina.getInstance().getId());
-        RestManager manager = new RestManager(route);
-        manager.postRequest(obj);
-    }
-    
-    public void setTime(int time) {
-        timer.setDelay(time);
-        restart();
-    }
-    
-    public int getTime() {
-        return time;
+
+    public String getRoute() {
+        return route;
     }
     
 }

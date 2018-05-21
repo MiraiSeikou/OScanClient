@@ -10,79 +10,79 @@ package com.miraiseikou.core.model;
  * @author jvlima
  */
 public class Usuario {
-    private int Id;
-    private String NomeUsuario;
-    private String Senha;
-    private String Nome;
-    private int IdAssinatura;
+    private int id;
+    private String nomeUsuario;
+    private String senha;
+    private String nome;
+    private int idAssinatura;
 
     /**
-     * @return the Id
+     * @return the id
      */
     public int getId() {
-        return Id;
+        return id;
     }
 
     /**
-     * @param Id the Id to set
+     * @param id the id to set
      */
-    public void setId(int Id) {
-        this.Id = Id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
-     * @return the NomeUsuario
+     * @return the nomeUsuario
      */
     public String getNomeUsuario() {
-        return NomeUsuario;
+        return nomeUsuario;
     }
 
     /**
-     * @param NomeUsuario the NomeUsuario to set
+     * @param nomeUsuario the nomeUsuario to set
      */
-    public void setNomeUsuario(String NomeUsuario) {
-        this.NomeUsuario = NomeUsuario;
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
     }
 
     /**
-     * @return the Senha
+     * @return the senha
      */
     public String getSenha() {
-        return Senha;
+        return senha;
     }
 
     /**
-     * @param Senha the Senha to set
+     * @param senha the senha to set
      */
-    public void setSenha(String Senha) {
-        this.Senha = Senha;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     /**
-     * @return the Nome
+     * @return the nome
      */
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
     /**
-     * @param Nome the Nome to set
+     * @param nome the nome to set
      */
-    public void setNome(String Nome) {
-        this.Nome = Nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     /**
-     * @return the IdAssinatura
+     * @return the idAssinatura
      */
     public int getIdAssinatura() {
-        return IdAssinatura;
+        return idAssinatura;
     }
 
     /**
-     * @param IdAssinatura the IdAssinatura to set
+     * @param idAssinatura the idAssinatura to set
      */
-    public void setIdAssinatura(int IdAssinatura) {
-        this.IdAssinatura = IdAssinatura;
+    public void setIdAssinatura(int idAssinatura) {
+        this.idAssinatura = idAssinatura;
     }
 }

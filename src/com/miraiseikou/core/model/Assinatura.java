@@ -10,49 +10,49 @@ package com.miraiseikou.core.model;
  * @author jvlima
  */
 public class Assinatura {
-    private int Id;
-    private String Nome;
-    private String Pacote;
+    private int id;
+    private String nome;
+    private String pacote;
 
     /**
-     * @return the Id
+     * @return the id
      */
     public int getId() {
-        return Id;
+        return id;
     }
 
     /**
-     * @param Id the Id to set
+     * @param id the id to set
      */
-    public void setId(int Id) {
-        this.Id = Id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
-     * @return the Nome
+     * @return the nome
      */
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
     /**
-     * @param Nome the Nome to set
+     * @param nome the nome to set
      */
-    public void setNome(String Nome) {
-        this.Nome = Nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     /**
-     * @return the Pacote
+     * @return the pacote
      */
     public String getPacote() {
-        return Pacote;
+        return pacote;
     }
 
     /**
-     * @param Pacote the Pacote to set
+     * @param pacote the pacote to set
      */
-    public void setPacote(String Pacote) {
-        this.Pacote = Pacote;
+    public void setPacote(String pacote) {
+        this.pacote = pacote;
     }
 }

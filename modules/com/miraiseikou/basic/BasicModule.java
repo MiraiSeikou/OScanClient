@@ -5,11 +5,13 @@
  */
 package com.miraiseikou.basic;
 
-import com.miraiseikou.basic.component.DiscoComponent;
-import com.miraiseikou.basic.component.MemoriaComponent;
-import com.miraiseikou.basic.component.ProcessadorComponent;
+import com.miraiseikou.basic.model.Disco;
+import com.miraiseikou.basic.model.Memoria;
+import com.miraiseikou.basic.model.Processador;
 import com.miraiseikou.core.Component;
 import com.miraiseikou.core.Module;
+import com.miraiseikou.core.Monitor;
+import java.util.ArrayList;
 
 /**
  *
@@ -17,13 +19,14 @@ import com.miraiseikou.core.Module;
  */
 public class BasicModule extends Module {
 
-    public BasicModule() {
-        init();
-    }
-
-    private void init() {
-        addComponent(new MemoriaComponent(1000));
-        addComponent(new DiscoComponent(1000));
-        addComponent(new ProcessadorComponent(1000));
+    @Override
+    public Monitor loadMonitor() {
+        Monitor monitor = new Monitor();
+        ArrayList<Component> components = new ArrayList<>();
+        components.add(new Processador("api/Processadors"));
+        components.add(new Memoria("api/Memorias"));
+        components.add(new Disco("api/Discoes"));
+        monitor.setComponents(components);
+        return monitor;
     }
 }

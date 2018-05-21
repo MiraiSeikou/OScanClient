@@ -5,32 +5,49 @@
  */
 package com.miraiseikou.core;
 
+import com.miraiseikou.core.dto.ComponentDTO;
+import com.miraiseikou.core.model.Maquina;
+import java.util.List;
+
 /**
  *
  * @author jvlima
  */
-public class Monitor {
-    private final Module module;
-    public Monitor(Module module) {
-        this.module = module;
-    }
+public final class Monitor {
+    private List<Component> components;
+    private Maquina maquina;
     
-    public void start() {
-        module.getComponents().forEach((component) -> {
-            component.start();
+    private void send() {
+        getComponents().forEach((component) -> {
+            component.setIdMaquina(maquina.getId());
+            ComponentDTO dto = new ComponentDTO();
+            dto.create(component.getRoute(), component);
         });
     }
     
-    public void stop() {
-        module.getComponents().forEach((component) -> {
-            component.stop();
-        });
+    public final void run() {
+        send();
     }
-    
-    public void restart() {
-        module.getComponents().forEach((component) -> {
-            component.restart();
-        });
+
+    /**
+     * @return the components
+     */
+    public List<Component> getComponents() {
+        return components;
     }
-    
+
+    /**
+     * @param components the components to set
+     */
+    public void setComponents(List<Component> components) {
+        this.components = components;
+    }
+
+    public Maquina getMaquina() {
+        return maquina;
+    }
+
+    public void setMaquina(Maquina maquina) {
+        this.maquina = maquina;
+    }
 }
