@@ -14,7 +14,7 @@ public class Usuario {
     private String nomeUsuario;
     private String senha;
     private String nome;
-    private int idAssinatura;
+    private int IdAssinatura;
 
     /**
      * @return the id
@@ -76,13 +76,13 @@ public class Usuario {
      * @return the idAssinatura
      */
     public int getIdAssinatura() {
-        return idAssinatura;
+        return IdAssinatura;
     }
 
     /**
      * @param idAssinatura the idAssinatura to set
      */
     public void setIdAssinatura(int idAssinatura) {
-        this.idAssinatura = idAssinatura;
+        this.IdAssinatura = idAssinatura;
     }
 }

@@ -6,6 +6,7 @@
 package com.miraiseikou.core.controller;
 
 import com.miraiseikou.core.Module;
+import com.miraiseikou.core.dto.AssinaturaDTO;
 import com.miraiseikou.core.dto.MaquinaDTO;
 import com.miraiseikou.core.model.Assinatura;
 import com.miraiseikou.core.model.Maquina;
@@ -15,9 +16,13 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author jvlima
+ * @author TheHeftier
  */
 public class TrayController {
+    /**
+     * Classe do tipo Module que receberá uma subclasse do mesmo tipo
+     * de acordo com a assinatura do usuário
+     */
     private Module module;
     
     public TrayController(Usuario usuario) {
@@ -26,6 +31,10 @@ public class TrayController {
 
     private void init(Usuario usuario) {
         Assinatura assinatura = new Assinatura();
+        assinatura.setId(usuario.getIdAssinatura());
+        AssinaturaDTO adto = new AssinaturaDTO(assinatura);
+        
+        
         Maquina maquina = new Maquina();
         maquina.setIdUsuario(usuario.getId());
         MaquinaDTO mdto = new MaquinaDTO(maquina);
@@ -37,7 +46,7 @@ public class TrayController {
         }
         
         try {
-            module = (Module)Class.forName(assinatura.getPacote()).newInstance();
+            module = (Module)Class.forName(adto.read().getPacote()).newInstance();
             module.getMonitor().setMaquina(maquina);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {
             Logger.getLogger(TrayController.class.getName()).log(Level.SEVERE, null, ex);

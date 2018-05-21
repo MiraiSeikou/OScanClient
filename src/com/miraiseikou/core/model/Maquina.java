@@ -9,7 +9,7 @@ import oshi.SystemInfo;
 
 /**
  *
- * @author jvlima
+ * @author TheHeftier
  */
 public class Maquina {
     private int id;

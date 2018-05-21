@@ -11,22 +11,18 @@ import java.util.List;
 
 /**
  *
- * @author jvlima
+ * @author TheHeftier
  */
 public final class Monitor {
     private List<Component> components;
     private Maquina maquina;
     
-    private void send() {
+    public final void send() {
         getComponents().forEach((component) -> {
             component.setIdMaquina(maquina.getId());
             ComponentDTO dto = new ComponentDTO();
             dto.create(component.getRoute(), component);
         });
-    }
-    
-    public final void run() {
-        send();
     }
 
     /**

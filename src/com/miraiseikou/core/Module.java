@@ -9,38 +9,62 @@ package com.miraiseikou.core;
 import javax.swing.Timer;
 
 /**
- *
- * @author jvlima
+ * 
+ * @author TheHeftier
  */
 public abstract class Module {
     private Monitor monitor;
     private Timer timer;
     
+    /**
+     * Classe
+     */
     public Module() {
         init();
     }
     
+    /**
+     * Método é chamado junto como construtor para evitar chamada problemática
+     */
     private void init() {
         this.monitor = loadMonitor();
         timer = new Timer(1000, (e) -> {
-            monitor.run();
+            monitor.send();
         });
     }
     
+    /**
+     * Método abstratato deve ser definido pelo usuário da classe e deve
+     * retornar o monitor que será utilizado pelo módulo
+     * @return retorna uma classe do tipo Monitor
+     */
     public abstract Monitor loadMonitor();
     
+    /**
+     * Inicializa o timer que vai rodar atividades agendadas em background
+     */
     public final void start() {
         timer.start();
     }
     
+    /**
+     * Para o o timer que vai rodar atividades agendadas em background
+     */
     public final void stop() {
         timer.stop();
     }
     
+    /**
+     * Reinicia o o timer que vai rodar atividades agendadas em background
+     */
     public final void restart() {
         timer.restart();
     }
 
+    /**
+     * 
+     * @return o tipo monitor definido para o módulo
+     */
     public Monitor getMonitor() {
         return monitor;
     }

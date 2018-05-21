@@ -11,7 +11,7 @@ import com.miraiseikou.util.HttpManager;
 
 /**
  *
- * @author jvlima
+ * @author TheHeftier
  */
 public class MaquinaDTO {
     private final HttpManager manager = new HttpManager();
@@ -22,7 +22,7 @@ public class MaquinaDTO {
     }
 
     private void init() {
-        manager.Read("api/Maquinas/" + maquina.getMacAddr());
+        manager.Read("api/Maquinas/Id/1");
     }
     
     public void create() {

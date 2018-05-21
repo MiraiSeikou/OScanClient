@@ -10,7 +10,7 @@ import com.miraiseikou.core.controller.LoginController;
 
 /**
  *
- * @author jvlima
+ * @author TheHeftier
  */
 public class LoginView extends javax.swing.JFrame {
 
