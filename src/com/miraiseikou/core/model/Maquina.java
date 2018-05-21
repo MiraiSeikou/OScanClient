@@ -12,100 +12,100 @@ import oshi.SystemInfo;
  * @author TheHeftier
  */
 public class Maquina {
-    private int id;
-    private String nome;
-    private String os;
-    private String serial;
-    private String macAddr;
-    private int idUsuario;
+    private int Id;
+    private String Nome;
+    private String OSName;
+    private String Serial;
+    private String MacAddr;
+    private int IdUsuario;
 
     public Maquina() {
-        nome = new SystemInfo().getOperatingSystem().getNetworkParams().getHostName();
-        os = new SystemInfo().getOperatingSystem().getFamily();
-        serial = new SystemInfo().getHardware().getComputerSystem().getSerialNumber();
+        Nome = new SystemInfo().getOperatingSystem().getNetworkParams().getHostName();
+        OSName = new SystemInfo().getOperatingSystem().getFamily();
+        Serial = new SystemInfo().getHardware().getComputerSystem().getSerialNumber();
     }
 
     /**
      * @return the id
      */
     public int getId() {
-        return id;
+        return Id;
     }
 
     /**
      * @param id the id to set
      */
     public void setId(int id) {
-        this.id = id;
+        this.Id = id;
     }
 
     /**
      * @return the nome
      */
     public String getNome() {
-        return nome;
+        return Nome;
     }
 
     /**
      * @param nome the nome to set
      */
     public void setNome(String nome) {
-        this.nome = nome;
+        this.Nome = nome;
     }
 
     /**
      * @return the os
      */
-    public String getOs() {
-        return os;
+    public String getOSName() {
+        return OSName;
     }
 
     /**
-     * @param os the os to set
+     * @param OSName the os to set
      */
-    public void setOs(String os) {
-        this.os = os;
+    public void setOSName(String OSName) {
+        this.OSName = OSName;
     }
 
     /**
      * @return the serial
      */
     public String getSerial() {
-        return serial;
+        return Serial;
     }
 
     /**
      * @param serial the serial to set
      */
     public void setSerial(String serial) {
-        this.serial = serial;
+        this.Serial = serial;
     }
 
     /**
      * @return the idUsuario
      */
     public int getIdUsuario() {
-        return idUsuario;
+        return IdUsuario;
     }
 
     /**
      * @param idUsuario the idUsuario to set
      */
     public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+        this.IdUsuario = idUsuario;
     }
 
     /**
      * @return the macAddr
      */
     public String getMacAddr() {
-        return macAddr;
+        return MacAddr;
     }
 
     /**
      * @param macAddr the macAddr to set
      */
     public void setMacAddr(String macAddr) {
-        this.macAddr = macAddr;
+        this.MacAddr = macAddr;
     }
 }

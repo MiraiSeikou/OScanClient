@@ -20,6 +20,7 @@ public final class Monitor {
     public final void send() {
         getComponents().forEach((component) -> {
             component.setIdMaquina(maquina.getId());
+            component.collect();
             ComponentDTO dto = new ComponentDTO();
             dto.create(component.getRoute(), component);
         });

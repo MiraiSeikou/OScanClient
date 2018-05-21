@@ -10,66 +10,66 @@ package com.miraiseikou.core.model;
  * @author jvlima
  */
 public class Usuario {
-    private int id;
-    private String nomeUsuario;
-    private String senha;
-    private String nome;
+    private int Id;
+    private String NomeUsuario;
+    private String Senha;
+    private String Nome;
     private int IdAssinatura;
 
     /**
      * @return the id
      */
     public int getId() {
-        return id;
+        return Id;
     }
 
     /**
      * @param id the id to set
      */
     public void setId(int id) {
-        this.id = id;
+        this.Id = id;
     }
 
     /**
      * @return the nomeUsuario
      */
     public String getNomeUsuario() {
-        return nomeUsuario;
+        return NomeUsuario;
     }
 
     /**
      * @param nomeUsuario the nomeUsuario to set
      */
     public void setNomeUsuario(String nomeUsuario) {
-        this.nomeUsuario = nomeUsuario;
+        this.NomeUsuario = nomeUsuario;
     }
 
     /**
      * @return the senha
      */
     public String getSenha() {
-        return senha;
+        return Senha;
     }
 
     /**
      * @param senha the senha to set
      */
     public void setSenha(String senha) {
-        this.senha = senha;
+        this.Senha = senha;
     }
 
     /**
      * @return the nome
      */
     public String getNome() {
-        return nome;
+        return Nome;
     }
 
     /**
      * @param nome the nome to set
      */
     public void setNome(String nome) {
-        this.nome = nome;
+        this.Nome = nome;
     }
 
     /**

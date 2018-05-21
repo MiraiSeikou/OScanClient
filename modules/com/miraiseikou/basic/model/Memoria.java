@@ -6,6 +6,7 @@
 package com.miraiseikou.basic.model;
 
 import com.miraiseikou.core.Component;
+import com.miraiseikou.util.Collector;
 import java.sql.Timestamp;
 
 /**
@@ -106,5 +107,14 @@ public class Memoria extends Component {
      */
     public void setMomentum(Timestamp Momentum) {
         this.Momentum = Momentum;
+    }
+
+    @Override
+    public void collect() {
+        Available = Collector.getInstance().getAvailableMemory();
+        Total = Collector.getInstance().getTotalMemory();
+        SwapAvailable = Collector.getInstance().getSwapUsed();
+        SwapTotal = Collector.getInstance().getSwapTotal();
+        Momentum = new Timestamp(System.currentTimeMillis());
     }
 }

@@ -6,6 +6,7 @@
 package com.miraiseikou.basic.model;
 
 import com.miraiseikou.core.Component;
+import com.miraiseikou.util.Collector;
 import java.sql.Timestamp;
 
 /**
@@ -76,5 +77,12 @@ public class Disco extends Component {
      */
     public void setMomentum(Timestamp Momentum) {
         this.Momentum = Momentum;
+    }
+
+    @Override
+    public void collect() {
+        Available = Collector.getInstance().getHDAvailable();
+        Total = Collector.getInstance().getHDTotal();
+        Momentum = new Timestamp(System.currentTimeMillis());
     }
 }

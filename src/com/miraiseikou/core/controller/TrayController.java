@@ -46,6 +46,11 @@ public class TrayController {
         }
         
         try {
+            /**
+             * Selecionando o pacote em que está localizado a classe da assinatura 
+             * do usuário. É utilizado o conceito de reflexão para definir esta em
+             * tempo de execução.
+             */
             module = (Module)Class.forName(adto.read().getPacote()).newInstance();
             module.getMonitor().setMaquina(maquina);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException ex) {

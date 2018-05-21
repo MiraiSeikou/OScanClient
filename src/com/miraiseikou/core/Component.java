@@ -13,6 +13,7 @@ public abstract class Component {
     private int idMaquina;
     private final String route;
     
+    public abstract void collect();
     /**
      * 
      * @param route define a rota em que o component será lançado

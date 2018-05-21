@@ -29,6 +29,7 @@ public abstract class Module {
     private void init() {
         this.monitor = loadMonitor();
         timer = new Timer(1000, (e) -> {
+            loadMonitor();
             monitor.send();
         });
     }

@@ -6,6 +6,7 @@
 package com.miraiseikou.basic.model;
 
 import com.miraiseikou.core.Component;
+import com.miraiseikou.util.Collector;
 import java.sql.Timestamp;
 
 /**
@@ -61,5 +62,11 @@ public class Processador extends Component {
      */
     public void setMomentum(Timestamp Momentum) {
         this.Momentum = Momentum;
+    }
+
+    @Override
+    public void collect() {
+        Usage = Collector.getInstance().getCpuLoad();
+        Momentum = new Timestamp(System.currentTimeMillis());
     }
 }
