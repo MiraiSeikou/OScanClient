@@ -18,9 +18,6 @@ import java.util.ArrayList;
  * @author jvlima
  */
 public class BasicModule extends Module {
-    private Processador processador = new Processador("api/Processadors");
-    private Memoria memoria = new Memoria("api/Memorias");
-    private Disco disco = new Disco("api/Discoes");
     
     public BasicModule() {
         init();
@@ -30,6 +27,7 @@ public class BasicModule extends Module {
     public Monitor loadMonitor() {
         Monitor monitor = new Monitor();
         ArrayList<Component> components = new ArrayList<>();
+        components.add(new Processador("api/Processadors"));
         components.add(new Memoria("api/Memorias"));
         components.add(new Disco("api/Discoes"));
         monitor.setComponents(components);
