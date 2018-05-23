@@ -7,6 +7,7 @@ package com.miraiseikou.basic.model;
 
 import com.miraiseikou.core.Component;
 import com.miraiseikou.util.Collector;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 /**
@@ -15,8 +16,13 @@ import java.sql.Timestamp;
  */
 public class Processador extends Component {
     private int Id;
-    private double Usage;
-    private Timestamp Momentum; 
+    private long VendorFreq;
+    private String Name;
+    private int LogicalProcessorCount;
+    private int PhysicalProcessorCount;
+    private Time SystemUptime;
+    private double SystemCpuLoad;
+    private Timestamp Momentum;
 
     public Processador(String route) {
         super(route);
@@ -35,21 +41,7 @@ public class Processador extends Component {
     public void setId(int Id) {
         this.Id = Id;
     }
-
-    /**
-     * @return the Usage
-     */
-    public double getUsage() {
-        return Usage;
-    }
-
-    /**
-     * @param Usage the Usage to set
-     */
-    public void setUsage(double Usage) {
-        this.Usage = Usage;
-    }
-
+    
     /**
      * @return the Momentum
      */
@@ -64,9 +56,98 @@ public class Processador extends Component {
         this.Momentum = Momentum;
     }
 
+    /**
+     * @return the VendorFreq
+     */
+    public long getVendorFreq() {
+        return VendorFreq;
+    }
+
+    /**
+     * @param VendorFreq the VendorFreq to set
+     */
+    public void setVendorFreq(long VendorFreq) {
+        this.VendorFreq = VendorFreq;
+    }
+
+    /**
+     * @return the Name
+     */
+    public String getName() {
+        return Name;
+    }
+
+    /**
+     * @param Name the Name to set
+     */
+    public void setName(String Name) {
+        this.Name = Name;
+    }
+
+    /**
+     * @return the LogicalProcessorCount
+     */
+    public int getLogicalProcessorCount() {
+        return LogicalProcessorCount;
+    }
+
+    /**
+     * @param LogicalProcessorCount the LogicalProcessorCount to set
+     */
+    public void setLogicalProcessorCount(int LogicalProcessorCount) {
+        this.LogicalProcessorCount = LogicalProcessorCount;
+    }
+
+    /**
+     * @return the PhysicalProcessorCount
+     */
+    public int getPhysicalProcessorCount() {
+        return PhysicalProcessorCount;
+    }
+
+    /**
+     * @param PhysicalProcessorCount the PhysicalProcessorCount to set
+     */
+    public void setPhysicalProcessorCount(int PhysicalProcessorCount) {
+        this.PhysicalProcessorCount = PhysicalProcessorCount;
+    }
+
+    /**
+     * @return the SystemUptime
+     */
+    public Time getSystemUptime() {
+        return SystemUptime;
+    }
+
+    /**
+     * @param SystemUptime the SystemUptime to set
+     */
+    public void setSystemUptime(Time SystemUptime) {
+        this.SystemUptime = SystemUptime;
+    }
+
+    /**
+     * @return the SystemCpuLoad
+     */
+    public double getSystemCpuLoad() {
+        return SystemCpuLoad;
+    }
+
+    /**
+     * @param SystemCpuLoad the SystemCpuLoad to set
+     */
+    public void setSystemCpuLoad(double SystemCpuLoad) {
+        this.SystemCpuLoad = SystemCpuLoad;
+    }
+
     @Override
     public void collect() {
-        Usage = Collector.getInstance().getCpuLoad();
-        Momentum = new Timestamp(System.currentTimeMillis());
+        LogicalProcessorCount = Collector.getInstance().getLogicalProcessorCount();
+        PhysicalProcessorCount = Collector.getInstance().getPhysicalProcessorCount();
+        Name = Collector.getInstance().getName();
+        SystemUptime = new Time(Collector.getInstance().getSystemUptime());
+        VendorFreq = Collector.getInstance().getVendorFreq();
+        SystemCpuLoad = Collector.getInstance().getCpuLoad();
+        setMomentum(new Timestamp(System.currentTimeMillis()));
     }
 }

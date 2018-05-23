@@ -5,7 +5,7 @@
  */
 package com.miraiseikou.core.model;
 
-import oshi.SystemInfo;
+import com.miraiseikou.util.Collector;
 
 /**
  *
@@ -13,16 +13,16 @@ import oshi.SystemInfo;
  */
 public class Maquina {
     private int Id;
-    private String Nome;
+    private String Name;
     private String OSName;
     private String Serial;
-    private String MacAddr;
+    private int IdAssinatura;
     private int IdUsuario;
 
     public Maquina() {
-        Nome = new SystemInfo().getOperatingSystem().getNetworkParams().getHostName();
-        OSName = new SystemInfo().getOperatingSystem().getFamily();
-        Serial = new SystemInfo().getHardware().getComputerSystem().getSerialNumber();
+        Name = Collector.getInstance().getHostName();
+        OSName = Collector.getInstance().getFamily();
+        Serial = Collector.getInstance().getSerial();
     }
 
     /**
@@ -43,14 +43,14 @@ public class Maquina {
      * @return the nome
      */
     public String getNome() {
-        return Nome;
+        return Name;
     }
 
     /**
      * @param nome the nome to set
      */
     public void setNome(String nome) {
-        this.Nome = nome;
+        this.Name = nome;
     }
 
     /**
@@ -95,17 +95,14 @@ public class Maquina {
         this.IdUsuario = idUsuario;
     }
 
-    /**
-     * @return the macAddr
-     */
-    public String getMacAddr() {
-        return MacAddr;
+    public int getIdAssinatura() {
+        return IdAssinatura;
     }
 
     /**
-     * @param macAddr the macAddr to set
+     * @param IdAssinatura the IdAssinatura to set
      */
-    public void setMacAddr(String macAddr) {
-        this.MacAddr = macAddr;
+    public void setIdAssinatura(int IdAssinatura) {
+        this.IdAssinatura = IdAssinatura;
     }
 }

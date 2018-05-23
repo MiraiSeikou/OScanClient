@@ -13,13 +13,13 @@ import java.sql.Timestamp;
  *
  * @author jvlima
  */
-public class Disco extends Component {
+public class FileStore extends Component {
     private int Id;
     private long Total;
     private long Available;
     private Timestamp Momentum;
 
-    public Disco(String route) {
+    public FileStore(String route) {
         super(route);
     }
     

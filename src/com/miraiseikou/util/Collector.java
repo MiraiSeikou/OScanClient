@@ -5,6 +5,7 @@
  */
 package com.miraiseikou.util;
 
+import java.sql.Time;
 import oshi.SystemInfo;
 import oshi.hardware.HardwareAbstractionLayer;
 import oshi.hardware.NetworkIF;
@@ -92,6 +93,34 @@ public class Collector {
     
     public String getHostName() {
         return os.getNetworkParams().getHostName();
+    }
+
+    public int getLogicalProcessorCount() {
+        return hal.getProcessor().getLogicalProcessorCount();
+    }
+
+    public int getPhysicalProcessorCount() {
+        return hal.getProcessor().getPhysicalProcessorCount();
+    }
+
+    public String getName() {
+        return hal.getProcessor().getName();
+    }
+
+    public long getSystemUptime() {
+        return hal.getProcessor().getSystemUptime();
+    }
+
+    public long getVendorFreq() {
+        return hal.getProcessor().getVendorFreq();
+    }
+
+    public String getFamily() {
+        return os.getFamily();
+    }
+
+    public String getSerial() {
+        return hal.getProcessor().getProcessorID();
     }
     
 }

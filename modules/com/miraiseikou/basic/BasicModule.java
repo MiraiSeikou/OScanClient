@@ -5,7 +5,7 @@
  */
 package com.miraiseikou.basic;
 
-import com.miraiseikou.basic.model.Disco;
+import com.miraiseikou.basic.model.FileStore;
 import com.miraiseikou.basic.model.Memoria;
 import com.miraiseikou.basic.model.Processador;
 import com.miraiseikou.core.Component;
@@ -29,7 +29,7 @@ public class BasicModule extends Module {
         ArrayList<Component> components = new ArrayList<>();
         components.add(new Processador("api/Processadors"));
         components.add(new Memoria("api/Memorias"));
-        components.add(new Disco("api/Discoes"));
+        components.add(new FileStore("api/Discoes"));
         monitor.setComponents(components);
         return monitor;
     }

@@ -30,11 +30,6 @@ public class TrayController {
     }
 
     private void init(Usuario usuario) {
-        Assinatura assinatura = new Assinatura();
-        assinatura.setId(usuario.getIdAssinatura());
-        AssinaturaDTO adto = new AssinaturaDTO(assinatura);
-        
-        
         Maquina maquina = new Maquina();
         maquina.setIdUsuario(usuario.getId());
         MaquinaDTO mdto = new MaquinaDTO(maquina);
@@ -46,6 +41,10 @@ public class TrayController {
         }
         
         try {
+            
+            Assinatura assinatura = new Assinatura();
+            assinatura.setId(maquina.getIdAssinatura());
+            AssinaturaDTO adto = new AssinaturaDTO(assinatura);
             /**
              * Selecionando o pacote em que está localizado a classe da assinatura 
              * do usuário. É utilizado o conceito de reflexão para definir esta em
