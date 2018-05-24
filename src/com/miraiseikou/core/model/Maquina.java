@@ -8,7 +8,7 @@ package com.miraiseikou.core.model;
 import com.miraiseikou.util.Collector;
 
 /**
- *
+ * Classe que representa a maquina monitora
  * @author TheHeftier
  */
 public class Maquina {

@@ -9,7 +9,7 @@ import com.miraiseikou.core.view.LoginView;
 
 /**
  * Classe main do projeto
- * Responsável por inivializar
+ * Responsável por inicializar a primeira janela do programa
  * @author jvlima
  */
 public class Launcher {

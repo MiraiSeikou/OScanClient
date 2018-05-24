@@ -9,7 +9,8 @@ package com.miraiseikou.core.view;
 import com.miraiseikou.core.controller.LoginController;
 
 /**
- *
+ * Janela inicial programa 
+ * Representação gráfica da janela de login
  * @author TheHeftier
  */
 public class LoginView extends javax.swing.JFrame {
@@ -104,6 +105,10 @@ public class LoginView extends javax.swing.JFrame {
         this.getRootPane().setDefaultButton(btnLogin);
     }
     
+    /**
+     * Ação do botão definido na janela
+     * @param evt 
+     */
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
         LoginController controller = new LoginController(this);

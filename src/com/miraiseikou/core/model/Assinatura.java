@@ -6,7 +6,7 @@
 package com.miraiseikou.core.model;
 
 /**
- *
+ * Classe que representa a assinatura da maquina
  * @author jvlima
  */
 public class Assinatura {

@@ -10,8 +10,10 @@ import com.miraiseikou.core.model.Assinatura;
 import com.miraiseikou.util.HttpManager;
 
 /**
- *
- * @author jvlima
+ * Objeto de transferência de dados.
+ * Classe intermediária com as principais definições para a transferência
+ * a partir da REST API
+ * @author TheHeftier
  */
 public class AssinaturaDTO {
     private final HttpManager manager = new HttpManager();

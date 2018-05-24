@@ -10,8 +10,10 @@ import com.miraiseikou.core.model.Usuario;
 import com.miraiseikou.util.HttpManager;
 
 /**
- *
- * @author jvlima
+ * Objeto de transferência de dados.
+ * Classe intermediária com as principais definições para a transferência
+ * a partir da REST API
+ * @author TheHeftier
  */
 public class UsuarioDTO {
     private HttpManager manager = new HttpManager();

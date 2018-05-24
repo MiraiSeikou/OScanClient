@@ -18,14 +18,29 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Classe Gerenciadora de HTTP 
+ * Responsável por fazer as requisições HTTP na REST API
  * @author TheHeftier
  */
 public class HttpManager {
+    /**
+     * Link base do REST API
+     */
     private final String baseAddress = "https://oscanwebapi.azurewebsites.net/";
+    /**
+     * Referência do código de status retornado pela requisição
+     */
     private int status;
+    /**
+     * Referência do corpo retornado pela requisição
+     */
     private String response;
     
+    /**
+     * Método responsável por efetuar POST na REST API
+     * @param route - Rota que será utilizada na API
+     * @param pojo - Objeto que deve ser serializado e enviado para a REST API
+     */
     public void Create(String route, Object pojo) {
         try {
             URL url = new URL(baseAddress + route);
@@ -52,7 +67,10 @@ public class HttpManager {
             Logger.getLogger(UsuarioDTO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    /**
+     * Método responsável por efetuar GET na REST API
+     * @param route - Rota que será utilizada na API
+     */
     public void Read(String route) {
         try {
             URL url = new URL(baseAddress + route);
@@ -77,14 +95,14 @@ public class HttpManager {
 
 
     /**
-     * @return the status
+     * @return retorna o status da requisição
      */
     public int getStatus() {
         return status;
     }
 
     /**
-     * @return the response
+     * @return retorna response - o corpo da requisição
      */
     public String getResponse() {
         return response;

@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.miraiseikou.core.model;
 
 /**
- *
- * @author jvlima
+ * Classe que representa um usuário do sistema
+ * @author TheHeftier
  */
 public class Usuario {
     private int Id;
