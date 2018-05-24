@@ -142,11 +142,10 @@ public class Processador extends Component {
 
     @Override
     public void collect() {
+        VendorFreq = Collector.getInstance().getVendorFreq();
+        Name = Collector.getInstance().getName();
         LogicalProcessorCount = Collector.getInstance().getLogicalProcessorCount();
         PhysicalProcessorCount = Collector.getInstance().getPhysicalProcessorCount();
-        Name = Collector.getInstance().getName();
-        SystemUptime = new Time(Collector.getInstance().getSystemUptime());
-        VendorFreq = Collector.getInstance().getVendorFreq();
         SystemCpuLoad = Collector.getInstance().getCpuLoad();
         setMomentum(new Timestamp(System.currentTimeMillis()));
     }

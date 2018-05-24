@@ -29,7 +29,7 @@ public class BasicModule extends Module {
         ArrayList<Component> components = new ArrayList<>();
         components.add(new Processador("api/Processadors"));
         components.add(new Memoria("api/Memorias"));
-        components.add(new FileStore("api/Discoes"));
+        components.add(new FileStore("api/FileStores"));
         monitor.setComponents(components);
         return monitor;
     }
