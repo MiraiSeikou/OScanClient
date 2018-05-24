@@ -14,15 +14,18 @@ import com.miraiseikou.core.Monitor;
 import java.util.ArrayList;
 
 /**
- *
- * @author jvlima
+ * Módulo básico do projeto
+ * Herda da classe abstrata Module e representa a assinatura básica no projeto,
+ * monitorando Processador, Memoria e HD.
+ * @author TheHeftier
  */
 public class BasicModule extends Module {
     
-    public BasicModule() {
-        init();
-    }
-
+    /**
+     * Implementação do método loadMonitor.
+     * É carregada com a lista de componentes que será monitorada neste módulo
+     * @return Monitor - Representa uma intância de monitor.
+     */
     @Override
     public Monitor loadMonitor() {
         Monitor monitor = new Monitor();
@@ -32,9 +35,5 @@ public class BasicModule extends Module {
         components.add(new FileStore("api/FileStores"));
         monitor.setComponents(components);
         return monitor;
-    }
-
-    private void init() {
-        
     }
 }

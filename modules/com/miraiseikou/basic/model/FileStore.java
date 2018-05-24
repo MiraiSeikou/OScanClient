@@ -10,75 +10,97 @@ import com.miraiseikou.util.Collector;
 import java.sql.Timestamp;
 
 /**
- *
- * @author jvlima
+ * Classe que representa o HD da máquina que está sendo monitorada
+ * Herda da classe Component
+ * @author TheHeftier
  */
 public class FileStore extends Component {
+    /**
+     * Atributo que representa uma referência ao campo Id do banco de dados
+     */
     private int Id;
+    /**
+     * Atributo que representa uma referência ao campo Total do banco de dados
+     */
     private long Total;
+    /**
+     * Atributo que representa uma referência ao campo Available do banco de dados
+     */
     private long Available;
+    /**
+     * Atributo que representa uma referência ao campo Momentum do banco de dados
+     */
     private Timestamp Momentum;
-
+    
+    /**
+     * Construtor de FileStore
+     * Chama a super classe para enviar a rota definida
+     * @param route representa a rota que será utilizada na API REST
+     */
     public FileStore(String route) {
         super(route);
     }
     
     /**
-     * @return the id
+     * @return o Id de FileStore
      */
     public int getId() {
         return Id;
     }
 
     /**
-     * @param id the id to set
+     * @param id define o Id de FileStore
      */
     public void setId(int id) {
         this.Id = id;
     }
 
     /**
-     * @return the Total
+     * @return retorna Total de FileStore
      */
     public long getTotal() {
         return Total;
     }
 
     /**
-     * @param Total the Total to set
+     * @param Total define o Total de FileStore
      */
     public void setTotal(long Total) {
         this.Total = Total;
     }
 
     /**
-     * @return the Available
+     * @return retorna o Available de FileStore
      */
     public long getAvailable() {
         return Available;
     }
 
     /**
-     * @param Available the Available to set
+     * @param Available define o Available de FileStore
      */
     public void setAvailable(long Available) {
         this.Available = Available;
     }
 
     /**
-     * @return the Momentum
+     * @return retorna o Momentum de FileStore
      */
     public Timestamp getMomentum() {
         return Momentum;
     }
 
     /**
-     * @param Momentum the Momentum to set
+     * @param Momentum define Momentum de FileStore
      */
     public void setMomentum(Timestamp Momentum) {
         this.Momentum = Momentum;
     }
 
+    /**
+     * Implementação do método collect
+     * Método responsável pela coleta dos dados
+     */
     @Override
     public void collect() {
         Available = Collector.getInstance().getHDAvailable();

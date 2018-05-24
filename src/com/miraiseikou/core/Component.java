@@ -6,39 +6,51 @@
 package com.miraiseikou.core;
 
 /**
- *
- * @author jvlima
+ * Classe que representa um componente a ser monitorado.
+ * Todos os componentes que precisam ser monitorados herdam dessa classe
+ * @author TheHeftier
  */
 public abstract class Component {
-    private int idMaquina;
+    /**
+     * Atributo que representa uma referência ao campo IdMaquina do banco de dados
+     */
+    private int IdMaquina;
+    /**
+     * Atributo que representa a rota do componente na API REST
+     * ex: api/Processadores/
+     */
     private final String route;
     
+    /**
+     * Método abstrato que tem o papel de fazer a coleta dos dados
+     * deve ser implementado pelo usuário da classe
+     */
     public abstract void collect();
     /**
-     * 
-     * @param route define a rota em que o component será lançado
+     * Construtor da classe Component
+     * @param route representa a rota que será utilizada na API REST
      */
     public Component(String route) {
         this.route = route;
     }
     
     /**
-     * @return the idMaquina retorna o id da maquina
+     * @return IdMaquina retorna o id da maquina
      */
     public int getIdMaquina() {
-        return idMaquina;
+        return IdMaquina;
     }
 
     /**
      * @param idMaquina define o id da maqua
      */
     public void setIdMaquina(int idMaquina) {
-        this.idMaquina = idMaquina;
+        this.IdMaquina = idMaquina;
     }
     
     /**
      * 
-     * @return retorna a rota do component definida no construtor
+     * @return retorna a rota do componente que foi definida no construtor
      */
     public String getRoute() {
         return route;

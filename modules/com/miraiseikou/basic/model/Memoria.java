@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 
 /**
  *
- * @author jvlima
+ * @author TheHeftier
  */
 public class Memoria extends Component {
     private int Id;

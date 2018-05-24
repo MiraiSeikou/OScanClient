@@ -1,14 +1,11 @@
-/*
-
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.miraiseikou.core;
 
 import javax.swing.Timer;
 
 /**
+ * Classe do projeto que representa um módulo do projeto.
+ * Toda nova assinatura que for criada deve ter uma subclasse de Module
+ * para representá-la.
  * 
  * @author TheHeftier
  */
@@ -17,7 +14,7 @@ public abstract class Module {
     private Timer timer;
     
     /**
-     * Classe
+     * Construtor do Módulo faz uma chamada para o métod privado init().
      */
     public Module() {
         init();
