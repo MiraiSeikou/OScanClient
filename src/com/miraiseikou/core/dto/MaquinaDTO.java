@@ -22,7 +22,7 @@ public class MaquinaDTO {
     }
 
     private void init() {
-        manager.Read("api/Maquinas/" + maquina.getSerial());
+        manager.Read("api/Maquinas/serial/" + maquina.getSerial());
     }
     
     public void create() {
