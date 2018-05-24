@@ -5,7 +5,6 @@
  */
 package com.miraiseikou.util;
 
-import java.sql.Time;
 import oshi.SystemInfo;
 import oshi.hardware.HardwareAbstractionLayer;
 import oshi.hardware.NetworkIF;
@@ -13,8 +12,8 @@ import oshi.software.os.OSFileStore;
 import oshi.software.os.OperatingSystem;
 
 /**
- *
- * @author jvlima
+ * Abstração da biblioteca oshi
+ * @author TheHeftier
  */
 public class Collector {
     private final SystemInfo si = new SystemInfo();

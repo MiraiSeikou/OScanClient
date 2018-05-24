@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author jvlima
+ * @author TheHeftier
  */
 public class HttpManager {
     private final String baseAddress = "https://oscanwebapi.azurewebsites.net/";

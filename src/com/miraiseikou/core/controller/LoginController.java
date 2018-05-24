@@ -78,7 +78,7 @@ public class LoginController {
         }
     }
     
-    //Métodos auxiliares
+    //Métodos auxiliares para pegar o texto dos campos
     public void setTxtUsuario(String txtUsuario) {
         usuario.setNomeUsuario(txtUsuario);
     }

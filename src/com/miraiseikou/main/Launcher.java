@@ -8,7 +8,8 @@ package com.miraiseikou.main;
 import com.miraiseikou.core.view.LoginView;
 
 /**
- *
+ * Classe main do projeto
+ * Responsável por inivializar
  * @author jvlima
  */
 public class Launcher {

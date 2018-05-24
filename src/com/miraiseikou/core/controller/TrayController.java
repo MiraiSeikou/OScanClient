@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.miraiseikou.core.controller;
 
 import com.miraiseikou.core.Module;
@@ -25,10 +20,19 @@ public class TrayController {
      */
     private Module module;
     
+    /**
+     * Construtor da classe
+     * Faz uma chamada ao método privado init()
+     * @param usuario - Referêcia ao usuário que foi autenticado.
+     */
     public TrayController(Usuario usuario) {
         init(usuario);
     }
-
+    
+    /**
+     * Método é chamado junto com o construtor para evitar chamada problemática
+     * @param usuario - recebe a referência a partir do construtor
+     */
     private void init(Usuario usuario) {
         Maquina maquina = new Maquina();
         maquina.setIdAssinatura(1);
@@ -43,7 +47,9 @@ public class TrayController {
         }
         
         try {
-            
+            /**
+             * Define a assinatura da máquina
+             */
             Assinatura assinatura = new Assinatura();
             assinatura.setId(maquina.getIdAssinatura());
             AssinaturaDTO adto = new AssinaturaDTO(assinatura);
@@ -58,15 +64,24 @@ public class TrayController {
             Logger.getLogger(TrayController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    /**
+     * Representa a ação do botão Iniciar do menu
+     */
     public void start() {
         module.start();
     }
-
+    
+    /**
+     * Representa a ação do botão Parar do menu
+     */
     public void stop() {
         module.stop();
     }
-
+    
+    /**
+     * Representa a ação do botão Reiniciar do menu
+     */
     public void restart() {
         module.restart();
     }
