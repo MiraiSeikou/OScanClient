@@ -20,7 +20,6 @@ import java.util.ArrayList;
  * @author TheHeftier
  */
 public class BasicModule extends Module {
-    
     /**
      * Implementação do método loadMonitor.
      * É carregada com a lista de componentes que será monitorada neste módulo

@@ -6,7 +6,7 @@ package com.miraiseikou.core.model;
  */
 public class Usuario {
     private int Id;
-    private String NomeUsuario;
+    private String Email;
     private String Senha;
     private String Nome;
     private int IdAssinatura;
@@ -28,15 +28,15 @@ public class Usuario {
     /**
      * @return the nomeUsuario
      */
-    public String getNomeUsuario() {
-        return NomeUsuario;
+    public String getEmail() {
+        return Email;
     }
 
     /**
-     * @param nomeUsuario the nomeUsuario to set
+     * @param email the nomeUsuario to set
      */
-    public void setNomeUsuario(String nomeUsuario) {
-        this.NomeUsuario = nomeUsuario;
+    public void setEmail(String email) {
+        this.Email = email;
     }
 
     /**

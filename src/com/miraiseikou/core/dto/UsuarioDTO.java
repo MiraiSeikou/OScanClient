@@ -25,7 +25,7 @@ public class UsuarioDTO {
     private void init(Usuario usuario) {
         StringBuilder builder = new StringBuilder();
         builder.append("api/Usuarios/")
-               .append(usuario.getNomeUsuario())
+               .append(usuario.getEmail())
                .append("/")
                .append(usuario.getSenha());
         manager.Read(builder.toString());

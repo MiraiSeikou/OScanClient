@@ -41,7 +41,7 @@ public class LoginController {
          * Verifica se algum dos campos estão em brancos
          * se estiveram, envia uma mensagem de erro.
          */
-        if (usuario.getNomeUsuario().equals("") ||
+        if (usuario.getEmail().equals("") ||
             usuario.getSenha().equals("")) {
             JOptionPane.showMessageDialog(
                 window, 
@@ -80,7 +80,7 @@ public class LoginController {
     
     //Métodos auxiliares para pegar o texto dos campos
     public void setTxtUsuario(String txtUsuario) {
-        usuario.setNomeUsuario(txtUsuario);
+        usuario.setEmail(txtUsuario);
     }
     
     public void setTxtSenha(String txtSenha) {
