@@ -1,0 +1,9 @@
+com.miraiseikou.basic
+com.miraiseikou.basic.model
+com.miraiseikou.core
+com.miraiseikou.core.controller
+com.miraiseikou.core.dto
+com.miraiseikou.core.model
+com.miraiseikou.core.view
+com.miraiseikou.main
+com.miraiseikou.util
