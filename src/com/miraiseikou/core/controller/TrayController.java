@@ -39,7 +39,7 @@ public class TrayController {
         maquina.setIdUsuario(usuario.getId());
         MaquinaDTO mdto = new MaquinaDTO(maquina);
         
-        if (mdto.getStatus() == 404) {
+        if (mdto.getStatus() != 200) {
             mdto.create();
             maquina = mdto.read();
         } else {
