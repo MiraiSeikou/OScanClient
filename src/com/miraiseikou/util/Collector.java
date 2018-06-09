@@ -119,7 +119,7 @@ public class Collector {
     }
 
     public String getSerial() {
-        return hal.getDiskStores()[0].getSerial();
+        return hal.getComputerSystem().getBaseboard().getSerialNumber();
     }
     
 }

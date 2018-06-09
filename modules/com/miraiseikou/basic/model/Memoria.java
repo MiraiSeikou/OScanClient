@@ -6,6 +6,8 @@
 package com.miraiseikou.basic.model;
 
 import com.miraiseikou.core.Component;
+import com.miraiseikou.slack.Payload;
+import com.miraiseikou.slack.SlackIntegration;
 import com.miraiseikou.util.Collector;
 import java.sql.Timestamp;
 
@@ -20,6 +22,7 @@ public class Memoria extends Component {
     private long SwapTotal;
     private long SwapAvailable;
     private Timestamp Momentum;
+    private static boolean teste = true;
 
     public Memoria(String route) {
         super(route);
@@ -116,5 +119,18 @@ public class Memoria extends Component {
         SwapAvailable = Collector.getInstance().getSwapUsed();
         SwapTotal = Collector.getInstance().getSwapTotal();
         Momentum = new Timestamp(System.currentTimeMillis());
+        double dd = ((Total-Available));
+        dd /= Total;
+        if (dd > 0.4) {
+            if (teste) {
+                SlackIntegration slack = new SlackIntegration();
+                Payload payload = new Payload();
+                payload.setText(""+ this.getIdMaquina());
+                slack.Create(payload);
+                teste = false;
+            }
+        } else {
+            teste = true;
+        }
     }
 }

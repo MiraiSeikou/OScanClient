@@ -6,6 +6,8 @@
 package com.miraiseikou.basic.model;
 
 import com.miraiseikou.core.Component;
+import com.miraiseikou.slack.Payload;
+import com.miraiseikou.slack.SlackIntegration;
 import com.miraiseikou.util.Collector;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -148,5 +150,9 @@ public class Processador extends Component {
         PhysicalProcessorCount = Collector.getInstance().getPhysicalProcessorCount();
         SystemCpuLoad = Collector.getInstance().getCpuLoad();
         setMomentum(new Timestamp(System.currentTimeMillis()));
+        
+        if (true) {
+            
+        }
     }
 }
