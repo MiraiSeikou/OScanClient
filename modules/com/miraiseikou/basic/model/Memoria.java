@@ -6,6 +6,8 @@
 package com.miraiseikou.basic.model;
 
 import com.miraiseikou.core.Component;
+import com.miraiseikou.core.dto.MaquinaDTO;
+import com.miraiseikou.core.model.Maquina;
 import com.miraiseikou.slack.Payload;
 import com.miraiseikou.slack.SlackIntegration;
 import com.miraiseikou.util.Collector;
@@ -119,16 +121,18 @@ public class Memoria extends Component {
         SwapAvailable = Collector.getInstance().getSwapUsed();
         SwapTotal = Collector.getInstance().getSwapTotal();
         Momentum = new Timestamp(System.currentTimeMillis());
-        double dd = ((Total-Available));
-        dd /= Total;
-        if (dd > 0.4) {
+        MaquinaDTO dto = new MaquinaDTO(getIdMaquina());
+        Maquina m = dto.read();
+        Payload payload = new Payload();
+        payload.setText(m.getNome() + " está com sobrecarga");
+        SlackIntegration slackIntegration = new SlackIntegration();
+        double d = Total-Available;
+        d /= Total;
+        if (d > 0.5) {
             if (teste) {
-                SlackIntegration slack = new SlackIntegration();
-                Payload payload = new Payload();
-                payload.setText(""+ this.getIdMaquina());
-                slack.Create(payload);
+                slackIntegration.Create(payload);
                 teste = false;
-            }
+            } 
         } else {
             teste = true;
         }

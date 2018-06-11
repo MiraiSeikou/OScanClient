@@ -18,13 +18,18 @@ import com.miraiseikou.util.HttpManager;
 public class MaquinaDTO {
     private final HttpManager manager = new HttpManager();
     private Maquina maquina = new Maquina();
+    
     public MaquinaDTO(Maquina maquina) {
         this.maquina = maquina;
         init();
     }
 
+    public MaquinaDTO(int id) {
+        manager.Read("api/Maquinas/id/"+id);
+    }
+
     private void init() {
-        manager.Read("api/Maquinas/serial/" + maquina.getSerial());
+        manager.Read("api/Maquinas/serial/" + maquina.getSerial() + "/" + maquina.getIdUsuario());
     }
     
     public void create() {

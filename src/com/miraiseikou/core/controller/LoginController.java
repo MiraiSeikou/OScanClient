@@ -63,17 +63,17 @@ public class LoginController {
              * Se voltar o código 200(OK), iniciliaza o icone na área
              * Se não manda mensagem de erro
              */
-            if (dto.getStatus() == 200) {
-                TrayView tray = new TrayView(usuario);
-                tray.init();
-                window.dispose();
-            } else {
+            if (dto.getStatus() != 200) {
                 JOptionPane.showMessageDialog(
                     window, 
                     "Credenciais Incorretas", 
                     "Falha de login", 
                     JOptionPane.ERROR_MESSAGE
                 );
+            } else {
+                TrayView tray = new TrayView(usuario);
+                tray.init();
+                window.dispose();
             }
         }
     }

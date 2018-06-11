@@ -150,9 +150,5 @@ public class Processador extends Component {
         PhysicalProcessorCount = Collector.getInstance().getPhysicalProcessorCount();
         SystemCpuLoad = Collector.getInstance().getCpuLoad();
         setMomentum(new Timestamp(System.currentTimeMillis()));
-        
-        if (true) {
-            
-        }
     }
 }

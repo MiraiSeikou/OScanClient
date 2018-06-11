@@ -28,22 +28,24 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="btnLogin" alignment="1" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblUsuario" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblUsuario" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblSenha" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtUsuario" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtSenha" min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="txtUsuario" min="-2" pref="140" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblSenha" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="txtSenha" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="btnLogin" alignment="1" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -60,9 +62,9 @@
                   <Component id="lblSenha" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtSenha" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnLogin" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="btnLogin" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -70,7 +72,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="lblUsuario">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Usuario: "/>
+        <Property name="text" type="java.lang.String" value="E-mail: "/>
       </Properties>
       <BindingProperties>
         <BindingProperty name="labelFor" source="txtUsuario" target="lblUsuario" targetPath="labelFor" updateStrategy="0" immediately="false"/>

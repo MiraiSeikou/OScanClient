@@ -35,7 +35,6 @@ public class TrayController {
      */
     private void init(Usuario usuario) {
         Maquina maquina = new Maquina();
-        maquina.setIdAssinatura(1);
         maquina.setIdUsuario(usuario.getId());
         MaquinaDTO mdto = new MaquinaDTO(maquina);
         

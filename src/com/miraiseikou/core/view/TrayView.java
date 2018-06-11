@@ -35,6 +35,7 @@ public class TrayView {
         MenuItem start = new MenuItem("Iniciar");
         MenuItem stop = new MenuItem("Parar");
         MenuItem restart = new MenuItem("Reiniciar");
+        MenuItem settings = new MenuItem("Configurações");
         MenuItem exit = new MenuItem("Sair");
         
         start.addActionListener((e) -> {
@@ -46,9 +47,13 @@ public class TrayView {
             trayIcon.setImage(createImage("res/images/Design_2.png"));
         });
         restart.addActionListener((e) -> {
-            trayIcon.setImage(createImage("res/images/Design_2.png"));
+            trayIcon.setImage(createImage("res/mages/Design_2.png"));
             controller.restart();
             trayIcon.setImage(createImage("res/images/Design_1.png"));
+        });
+        settings.addActionListener((e) ->{
+            SettingsView settingsView = new SettingsView();
+            settingsView.setVisible(true);
         });
         exit.addActionListener((e) -> {
             System.exit(0);
@@ -56,6 +61,7 @@ public class TrayView {
         menu.add(start);
         menu.add(stop);
         menu.add(restart);
+        menu.add(settings);
         menu.add(exit);
         trayIcon.setPopupMenu(menu);
         SystemTray tray = SystemTray.getSystemTray();

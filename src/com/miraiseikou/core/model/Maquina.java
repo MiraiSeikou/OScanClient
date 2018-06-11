@@ -21,8 +21,9 @@ public class Maquina {
 
     public Maquina() {
         Name = Collector.getInstance().getHostName();
-        OSName = Collector.getInstance().getFamily();
+        OSName = Collector.getInstance().getOSName();
         Serial = Collector.getInstance().getSerial();
+        IdAssinatura = 1;
     }
 
     /**

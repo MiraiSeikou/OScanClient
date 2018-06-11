@@ -87,7 +87,7 @@ public class Collector {
     }
     
     public String getOSName() {
-        return os.getFamily() + " " + os.getVersion().getVersion();
+        return (os.getFamily() + " " + os.getVersion().getVersion());
     }
     
     public String getHostName() {
