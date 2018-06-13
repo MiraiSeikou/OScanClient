@@ -14,6 +14,7 @@ import java.awt.PopupMenu;
 import java.awt.SystemTray;
 import java.awt.Toolkit;
 import java.awt.TrayIcon;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -29,8 +30,8 @@ public class TrayView {
     }
     
     public void init() {
-        trayIcon = new TrayIcon(createImage("res/images/Design_3.png"), "OScan");
-        
+        trayIcon = new TrayIcon(createImage("/images/Design_3.png"), "OScan");
+        trayIcon.setImageAutoSize(true);
         PopupMenu menu = new PopupMenu();
         MenuItem start = new MenuItem("Iniciar");
         MenuItem stop = new MenuItem("Parar");
@@ -40,16 +41,16 @@ public class TrayView {
         
         start.addActionListener((e) -> {
             controller.start();
-            trayIcon.setImage(createImage("res/images/Design_1.png"));
+            trayIcon.setImage(createImage("/images/Design_1.png"));
         });
         stop.addActionListener((e) -> {
             controller.stop();
-            trayIcon.setImage(createImage("res/images/Design_2.png"));
+            trayIcon.setImage(createImage("/images/Design_2.png"));
         });
         restart.addActionListener((e) -> {
-            trayIcon.setImage(createImage("res/mages/Design_2.png"));
+            trayIcon.setImage(createImage("/images/Design_2.png"));
             controller.restart();
-            trayIcon.setImage(createImage("res/images/Design_1.png"));
+            trayIcon.setImage(createImage("/images/Design_1.png"));
         });
         settings.addActionListener((e) ->{
             SettingsView settingsView = new SettingsView();
@@ -73,7 +74,8 @@ public class TrayView {
     }
 
     private Image createImage(String path) {
-        return Toolkit.getDefaultToolkit().createImage(path);
+        URL resource = this.getClass().getResource(path);
+        return Toolkit.getDefaultToolkit().createImage(resource);
     }
     
 }

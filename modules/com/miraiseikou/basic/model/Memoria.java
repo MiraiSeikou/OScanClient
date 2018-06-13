@@ -24,7 +24,7 @@ public class Memoria extends Component {
     private long SwapTotal;
     private long SwapAvailable;
     private Timestamp Momentum;
-    private static boolean teste = true;
+    private long now = System.currentTimeMillis();
 
     public Memoria(String route) {
         super(route);
@@ -126,15 +126,13 @@ public class Memoria extends Component {
         Payload payload = new Payload();
         payload.setText(m.getNome() + " está com sobrecarga");
         SlackIntegration slackIntegration = new SlackIntegration();
-        double d = Total-Available;
-        d /= Total;
-        if (d > 0.5) {
-            if (teste) {
+        double diff = (Total- Available);
+        diff /= Total;
+        if (diff > 0.4) {
+            if ((System.currentTimeMillis() - now) > (1000*60)*2) {
                 slackIntegration.Create(payload);
-                teste = false;
-            } 
-        } else {
-            teste = true;
+                now = System.currentTimeMillis();
+            }
         }
     }
 }

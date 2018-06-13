@@ -26,11 +26,11 @@ import java.util.logging.Logger;
 public class SlackIntegration {
     private static final Logger LOGGER = Logger.getLogger(SlackIntegration.class.getName());
     Properties prop = new Properties();
-    InputStream is;
 
     public SlackIntegration() {
         try {
-            this.is = new FileInputStream("./src/props/propriedades.properties");
+            URL resource = this.getClass().getResource("/props/propriedades.properties");
+            InputStream is = new FileInputStream(resource.getPath());
             prop.load(is);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(SlackIntegration.class.getName()).log(Level.SEVERE, null, ex);
