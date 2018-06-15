@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.miraiseikou.basic.model;
+package com.miraiseikou.model;
 
 import com.miraiseikou.core.Component;
 import com.miraiseikou.core.dto.MaquinaDTO;
@@ -15,110 +15,120 @@ import com.miraiseikou.util.PropertiesManager;
 import java.sql.Timestamp;
 
 /**
- * Classe que representa o HD da máquina que está sendo monitorada
- * Herda da classe Component
+ *
  * @author TheHeftier
  */
-public class FileStore extends Component {
-    /**
-     * Atributo que representa uma referência ao campo Id do banco de dados
-     */
+public class Memoria extends Component {
     private int Id;
-    /**
-     * Atributo que representa uma referência ao campo Total do banco de dados
-     */
     private long Total;
-    /**
-     * Atributo que representa uma referência ao campo Available do banco de dados
-     */
     private long Available;
-    /**
-     * Atributo que representa uma referência ao campo Momentum do banco de dados
-     */
+    private long SwapTotal;
+    private long SwapAvailable;
     private Timestamp Momentum;
-    
     private long now = System.currentTimeMillis();
     private PropertiesManager manager = new PropertiesManager();
-    /**
-     * Construtor de FileStore
-     * Chama a super classe para enviar a rota definida
-     * @param route representa a rota que será utilizada na API REST
-     */
-    public FileStore(String route) {
+
+    public Memoria(String route) {
         super(route);
         now += (1000*60*60)*Integer.parseInt(manager.getProperty("tolerance"));
     }
-    
+
     /**
-     * @return o Id de FileStore
+     * @return the Id
      */
     public int getId() {
         return Id;
     }
 
     /**
-     * @param id define o Id de FileStore
+     * @param Id the Id to set
      */
-    public void setId(int id) {
-        this.Id = id;
+    public void setId(int Id) {
+        this.Id = Id;
     }
 
     /**
-     * @return retorna Total de FileStore
+     * @return the Total
      */
     public long getTotal() {
         return Total;
     }
 
     /**
-     * @param Total define o Total de FileStore
+     * @param Total the Total to set
      */
     public void setTotal(long Total) {
         this.Total = Total;
     }
 
     /**
-     * @return retorna o Available de FileStore
+     * @return the Available
      */
     public long getAvailable() {
         return Available;
     }
 
     /**
-     * @param Available define o Available de FileStore
+     * @param Available the Available to set
      */
     public void setAvailable(long Available) {
         this.Available = Available;
     }
 
     /**
-     * @return retorna o Momentum de FileStore
+     * @return the SwapTotal
+     */
+    public long getSwapTotal() {
+        return SwapTotal;
+    }
+
+    /**
+     * @param SwapTotal the SwapTotal to set
+     */
+    public void setSwapTotal(long SwapTotal) {
+        this.SwapTotal = SwapTotal;
+    }
+
+    /**
+     * @return the SwapAvailable
+     */
+    public long getSwapAvailable() {
+        return SwapAvailable;
+    }
+
+    /**
+     * @param SwapAvailable the SwapAvailable to set
+     */
+    public void setSwapAvailable(long SwapAvailable) {
+        this.SwapAvailable = SwapAvailable;
+    }
+
+    /**
+     * @return the Momentum
      */
     public Timestamp getMomentum() {
         return Momentum;
     }
 
     /**
-     * @param Momentum define Momentum de FileStore
+     * @param Momentum the Momentum to set
      */
     public void setMomentum(Timestamp Momentum) {
         this.Momentum = Momentum;
     }
 
-    /**
-     * Implementação do método collect
-     * Método responsável pela coleta dos dados
-     */
     @Override
     public void collect() {
-        Available = Collector.getInstance().getHDAvailable();
-        Total = Collector.getInstance().getHDTotal();
+        Available = Collector.getInstance().getAvailableMemory();
+        Total = Collector.getInstance().getTotalMemory();
+        SwapAvailable = Collector.getInstance().getSwapUsed();
+        SwapTotal = Collector.getInstance().getSwapTotal();
         Momentum = new Timestamp(System.currentTimeMillis());
         
         MaquinaDTO dto = new MaquinaDTO(getIdMaquina());
         Maquina m = dto.read();
         Payload payload = new Payload();
-        payload.setText(m.getNome() + " está com o armazenamento quase esgotado");
+        payload.setText(m.getNome() + " está com consumo enorme de memória");
         SlackIntegration slackIntegration = new SlackIntegration();
         double diff = (Total- Available);
         diff /= Total;

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.miraiseikou.basic;
+package com.miraiseikou.advanced;
 
+import com.miraiseikou.model.FileStore;
 import com.miraiseikou.model.Memoria;
 import com.miraiseikou.model.Processador;
 import com.miraiseikou.core.Component;
@@ -13,12 +14,10 @@ import com.miraiseikou.core.Monitor;
 import java.util.ArrayList;
 
 /**
- * Módulo básico do projeto
- * Herda da classe abstrata Module e representa a assinatura básica no projeto,
- * monitorando Processador, Memoria e HD.
- * @author TheHeftier
+ *
+ * @author jvlima
  */
-public class BasicModule extends Module {
+public class AdvancedModule extends Module {
     /**
      * Implementação do método loadMonitor.
      * É carregada com a lista de componentes que será monitorada neste módulo
@@ -30,6 +29,7 @@ public class BasicModule extends Module {
         ArrayList<Component> components = new ArrayList<>();
         components.add(new Processador("api/Processadors"));
         components.add(new Memoria("api/Memorias"));
+        components.add(new FileStore("api/FileStores"));
         monitor.setComponents(components);
         return monitor;
     }
