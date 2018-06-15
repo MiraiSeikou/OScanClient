@@ -74,9 +74,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="E-mail: "/>
       </Properties>
-      <BindingProperties>
-        <BindingProperty name="labelFor" source="txtUsuario" target="lblUsuario" targetPath="labelFor" updateStrategy="0" immediately="false"/>
-      </BindingProperties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtUsuario">
     </Component>
@@ -84,9 +81,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Senha: "/>
       </Properties>
-      <BindingProperties>
-        <BindingProperty name="labelFor" source="txtSenha" target="lblSenha" targetPath="labelFor" updateStrategy="0" immediately="false"/>
-      </BindingProperties>
     </Component>
     <Component class="javax.swing.JPasswordField" name="txtSenha">
     </Component>

@@ -31,7 +31,6 @@ public class LoginView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         lblUsuario = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
@@ -48,13 +47,7 @@ public class LoginView extends javax.swing.JFrame {
 
         lblUsuario.setText("E-mail: ");
 
-        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtUsuario, org.jdesktop.beansbinding.ObjectProperty.create(), lblUsuario, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
-        bindingGroup.addBinding(binding);
-
         lblSenha.setText("Senha: ");
-
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, txtSenha, org.jdesktop.beansbinding.ObjectProperty.create(), lblSenha, org.jdesktop.beansbinding.BeanProperty.create("labelFor"));
-        bindingGroup.addBinding(binding);
 
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -98,8 +91,6 @@ public class LoginView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        bindingGroup.bind();
-
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -128,7 +119,6 @@ public class LoginView extends javax.swing.JFrame {
     private javax.swing.JLabel lblUsuario;
     private javax.swing.JPasswordField txtSenha;
     private javax.swing.JTextField txtUsuario;
-    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 
 
