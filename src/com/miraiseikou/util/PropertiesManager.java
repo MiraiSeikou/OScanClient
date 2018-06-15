@@ -6,7 +6,13 @@
 package com.miraiseikou.util;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.URL;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,6 +39,13 @@ public class PropertiesManager {
 
     public void setProperty(String key, String value) {
         prop.setProperty(key, value);
+        try {
+            prop.store(new FileOutputStream("res/props/propriedades.properties"), null);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PropertiesManager.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(PropertiesManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     

@@ -28,6 +28,7 @@ public class SettingsView extends javax.swing.JFrame {
         this.getRootPane().setDefaultButton(jButton1);
         URL resources = this.getClass().getResource("/images/logo.png");
         this.setIconImage(Toolkit.getDefaultToolkit().createImage(resources));
+        jTextField1.setText(manager.getProperty("token"));
         jSpinner1.setValue(Integer.valueOf(manager.getProperty("tolerance")));
     }
 
