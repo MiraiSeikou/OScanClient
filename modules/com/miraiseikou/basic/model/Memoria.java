@@ -30,6 +30,7 @@ public class Memoria extends Component {
 
     public Memoria(String route) {
         super(route);
+        now += (1000*60*60)*Integer.parseInt(manager.getProperty("tolerance"));
     }
 
     /**

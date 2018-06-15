@@ -33,6 +33,7 @@ public class Processador extends Component {
 
     public Processador(String route) {
         super(route);
+        now += (1000*60*60)*Integer.parseInt(manager.getProperty("tolerance"));
     }
 
     /**

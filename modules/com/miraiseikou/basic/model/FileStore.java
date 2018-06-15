@@ -46,6 +46,7 @@ public class FileStore extends Component {
      */
     public FileStore(String route) {
         super(route);
+        now += (1000*60*60)*Integer.parseInt(manager.getProperty("tolerance"));
     }
     
     /**
