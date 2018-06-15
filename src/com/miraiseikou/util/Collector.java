@@ -119,7 +119,7 @@ public class Collector {
     }
 
     public String getSerial() {
-        return hal.getComputerSystem().getBaseboard().getSerialNumber();
+        return hal.getProcessor().getProcessorID();
     }
     
 }

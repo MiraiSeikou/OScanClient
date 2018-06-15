@@ -6,7 +6,12 @@
 package com.miraiseikou.basic.model;
 
 import com.miraiseikou.core.Component;
+import com.miraiseikou.core.dto.MaquinaDTO;
+import com.miraiseikou.core.model.Maquina;
+import com.miraiseikou.slack.Payload;
+import com.miraiseikou.slack.SlackIntegration;
 import com.miraiseikou.util.Collector;
+import com.miraiseikou.util.PropertiesManager;
 import java.sql.Timestamp;
 
 /**
@@ -32,6 +37,8 @@ public class FileStore extends Component {
      */
     private Timestamp Momentum;
     
+    private long now = System.currentTimeMillis();
+    private PropertiesManager manager = new PropertiesManager();
     /**
      * Construtor de FileStore
      * Chama a super classe para enviar a rota definida
@@ -106,5 +113,20 @@ public class FileStore extends Component {
         Available = Collector.getInstance().getHDAvailable();
         Total = Collector.getInstance().getHDTotal();
         Momentum = new Timestamp(System.currentTimeMillis());
+        
+        MaquinaDTO dto = new MaquinaDTO(getIdMaquina());
+        Maquina m = dto.read();
+        Payload payload = new Payload();
+        payload.setText(m.getNome() + " está com o armazenamento quase esgotado");
+        SlackIntegration slackIntegration = new SlackIntegration();
+        double diff = (Total- Available);
+        diff /= Total;
+        long time = (1000*60*60)*Integer.parseInt(manager.getProperty("tolerance"));
+        if (diff > 0.8) {
+            if ((System.currentTimeMillis() - now) > time) {
+                slackIntegration.Create(payload);
+                now = System.currentTimeMillis();
+            }
+        }
     }
 }

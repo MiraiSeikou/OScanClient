@@ -6,9 +6,12 @@
 package com.miraiseikou.basic.model;
 
 import com.miraiseikou.core.Component;
+import com.miraiseikou.core.dto.MaquinaDTO;
+import com.miraiseikou.core.model.Maquina;
 import com.miraiseikou.slack.Payload;
 import com.miraiseikou.slack.SlackIntegration;
 import com.miraiseikou.util.Collector;
+import com.miraiseikou.util.PropertiesManager;
 import java.sql.Time;
 import java.sql.Timestamp;
 
@@ -25,6 +28,8 @@ public class Processador extends Component {
     private Time SystemUptime;
     private double SystemCpuLoad;
     private Timestamp Momentum;
+    private long now = System.currentTimeMillis();
+    private PropertiesManager manager = new PropertiesManager();
 
     public Processador(String route) {
         super(route);
@@ -150,5 +155,19 @@ public class Processador extends Component {
         PhysicalProcessorCount = Collector.getInstance().getPhysicalProcessorCount();
         SystemCpuLoad = Collector.getInstance().getCpuLoad();
         setMomentum(new Timestamp(System.currentTimeMillis()));
+        
+        MaquinaDTO dto = new MaquinaDTO(getIdMaquina());
+        Maquina m = dto.read();
+        Payload payload = new Payload();
+        payload.setText(m.getNome() + " está com o processador sobrecarregado");
+        SlackIntegration slackIntegration = new SlackIntegration();
+        
+        long time = (1000*60*60)*Integer.parseInt(manager.getProperty("tolerance"));
+        if (SystemCpuLoad > 0.8) {
+            if ((System.currentTimeMillis() - now) > time) {
+                slackIntegration.Create(payload);
+                now = System.currentTimeMillis();
+            }
+        }
     }
 }

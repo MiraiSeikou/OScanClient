@@ -7,6 +7,8 @@
 package com.miraiseikou.core.view;
 
 import com.miraiseikou.core.controller.LoginController;
+import java.awt.Toolkit;
+import java.net.URL;
 
 /**
  * Janela inicial programa 
@@ -104,6 +106,8 @@ public class LoginView extends javax.swing.JFrame {
 
     private void init() {
         this.getRootPane().setDefaultButton(btnLogin);
+        URL resources = this.getClass().getResource("/images/logo.png");
+        this.setIconImage(Toolkit.getDefaultToolkit().createImage(resources));
     }
     
     /**

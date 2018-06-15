@@ -11,6 +11,7 @@ import com.miraiseikou.core.model.Maquina;
 import com.miraiseikou.slack.Payload;
 import com.miraiseikou.slack.SlackIntegration;
 import com.miraiseikou.util.Collector;
+import com.miraiseikou.util.PropertiesManager;
 import java.sql.Timestamp;
 
 /**
@@ -25,6 +26,7 @@ public class Memoria extends Component {
     private long SwapAvailable;
     private Timestamp Momentum;
     private long now = System.currentTimeMillis();
+    private PropertiesManager manager = new PropertiesManager();
 
     public Memoria(String route) {
         super(route);
@@ -121,15 +123,17 @@ public class Memoria extends Component {
         SwapAvailable = Collector.getInstance().getSwapUsed();
         SwapTotal = Collector.getInstance().getSwapTotal();
         Momentum = new Timestamp(System.currentTimeMillis());
+        
         MaquinaDTO dto = new MaquinaDTO(getIdMaquina());
         Maquina m = dto.read();
         Payload payload = new Payload();
-        payload.setText(m.getNome() + " está com sobrecarga");
+        payload.setText(m.getNome() + " está com consumo enorme de memória");
         SlackIntegration slackIntegration = new SlackIntegration();
         double diff = (Total- Available);
         diff /= Total;
-        if (diff > 0.4) {
-            if ((System.currentTimeMillis() - now) > (1000*60)*2) {
+        long time = (1000*60*60)*Integer.parseInt(manager.getProperty("tolerance"));
+        if (diff > 0.8) {
+            if ((System.currentTimeMillis() - now) > time) {
                 slackIntegration.Create(payload);
                 now = System.currentTimeMillis();
             }

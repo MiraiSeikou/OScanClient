@@ -30,7 +30,8 @@ public class TrayView {
     }
     
     public void init() {
-        trayIcon = new TrayIcon(createImage("/images/Design_3.png"), "OScan");
+        SystemTray tray = SystemTray.getSystemTray();
+        trayIcon = new TrayIcon(createImage("/images/logo.png"), "OScan");
         trayIcon.setImageAutoSize(true);
         PopupMenu menu = new PopupMenu();
         MenuItem start = new MenuItem("Iniciar");
@@ -41,22 +42,19 @@ public class TrayView {
         
         start.addActionListener((e) -> {
             controller.start();
-            trayIcon.setImage(createImage("/images/Design_1.png"));
         });
         stop.addActionListener((e) -> {
             controller.stop();
-            trayIcon.setImage(createImage("/images/Design_2.png"));
         });
         restart.addActionListener((e) -> {
-            trayIcon.setImage(createImage("/images/Design_2.png"));
             controller.restart();
-            trayIcon.setImage(createImage("/images/Design_1.png"));
         });
         settings.addActionListener((e) ->{
             SettingsView settingsView = new SettingsView();
             settingsView.setVisible(true);
         });
         exit.addActionListener((e) -> {
+            tray.remove(trayIcon);
             System.exit(0);
         });
         menu.add(start);
@@ -65,7 +63,6 @@ public class TrayView {
         menu.add(settings);
         menu.add(exit);
         trayIcon.setPopupMenu(menu);
-        SystemTray tray = SystemTray.getSystemTray();
         try {
             tray.add(trayIcon);
         } catch (AWTException ex) {
