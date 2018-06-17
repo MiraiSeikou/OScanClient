@@ -9,9 +9,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.net.URL;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -26,8 +23,7 @@ public class PropertiesManager {
     
     public PropertiesManager() {
         try {
-            FileInputStream file = new FileInputStream("res/props/propriedades.properties");
-            prop.load(file);
+            prop.load(this.getClass().getResourceAsStream("/props/propriedades.properties"));
         } catch (IOException ex) {
             Logger.getLogger(PropertiesManager.class.getName()).log(Level.SEVERE, null, ex);
         } 

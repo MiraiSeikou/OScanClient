@@ -63,7 +63,7 @@ public class SettingsView extends javax.swing.JFrame {
 
         jLabel2.setText("Tempo de Tolerancia: ");
 
-        jLabel3.setText("Horas");
+        jLabel3.setText("Minutos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

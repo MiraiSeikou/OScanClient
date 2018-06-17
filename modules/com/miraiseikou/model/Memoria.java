@@ -30,7 +30,6 @@ public class Memoria extends Component {
 
     public Memoria(String route) {
         super(route);
-        now += (1000*60*60)*Integer.parseInt(manager.getProperty("tolerance"));
     }
 
     /**
@@ -132,7 +131,7 @@ public class Memoria extends Component {
         SlackIntegration slackIntegration = new SlackIntegration();
         double diff = (Total- Available);
         diff /= Total;
-        long time = (1000*60*60)*Integer.parseInt(manager.getProperty("tolerance"));
+        long time = (1000*60)*Integer.parseInt(manager.getProperty("tolerance"));
         if (diff > 0.8) {
             if ((System.currentTimeMillis() - now) > time) {
                 slackIntegration.Create(payload);

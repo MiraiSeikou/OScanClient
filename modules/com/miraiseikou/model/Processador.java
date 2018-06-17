@@ -33,7 +33,6 @@ public class Processador extends Component {
 
     public Processador(String route) {
         super(route);
-        now += (1000*60*60)*Integer.parseInt(manager.getProperty("tolerance"));
     }
 
     /**
@@ -163,7 +162,7 @@ public class Processador extends Component {
         payload.setText(m.getNome() + " está com o processador sobrecarregado");
         SlackIntegration slackIntegration = new SlackIntegration();
         
-        long time = (1000*60*60)*Integer.parseInt(manager.getProperty("tolerance"));
+        long time = (1000*60)*Integer.parseInt(manager.getProperty("tolerance"));
         if (SystemCpuLoad > 0.8) {
             if ((System.currentTimeMillis() - now) > time) {
                 slackIntegration.Create(payload);

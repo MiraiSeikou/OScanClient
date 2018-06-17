@@ -31,7 +31,7 @@ public class TrayView {
     
     public void init() {
         SystemTray tray = SystemTray.getSystemTray();
-        trayIcon = new TrayIcon(createImage("/images/logo.png"), "OScan");
+        trayIcon = new TrayIcon(createImage("/images/logo_orange.png"), "OScan");
         trayIcon.setImageAutoSize(true);
         PopupMenu menu = new PopupMenu();
         MenuItem start = new MenuItem("Iniciar");
@@ -42,12 +42,16 @@ public class TrayView {
         
         start.addActionListener((e) -> {
             controller.start();
+            trayIcon.setImage(createImage("/images/logo_green.png"));
         });
         stop.addActionListener((e) -> {
             controller.stop();
+            trayIcon.setImage(createImage("/images/logo_red.png"));
         });
         restart.addActionListener((e) -> {
+            trayIcon.setImage(createImage("/images/logo_orange.png"));
             controller.restart();
+            trayIcon.setImage(createImage("/images/logo_green.png"));
         });
         settings.addActionListener((e) ->{
             SettingsView settingsView = new SettingsView();
