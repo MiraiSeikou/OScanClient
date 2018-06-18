@@ -124,7 +124,7 @@ public class FileStore extends Component {
         long time = (1000*60)*Integer.parseInt(manager.getProperty("tolerance"));
         if (diff > 0.8) {
             if ((System.currentTimeMillis() - now) > time) {
-                slackIntegration.Create(payload);
+                slackIntegration.create(payload);
                 now = System.currentTimeMillis();
             }
         }

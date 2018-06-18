@@ -25,6 +25,7 @@ import java.util.logging.Logger;
 public class TrayView {
     private TrayIcon trayIcon;
     TrayController controller;
+    
     public TrayView(Usuario usuario) {
         controller = new TrayController(usuario);
     }

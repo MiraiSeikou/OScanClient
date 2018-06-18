@@ -165,7 +165,7 @@ public class Processador extends Component {
         long time = (1000*60)*Integer.parseInt(manager.getProperty("tolerance"));
         if (SystemCpuLoad > 0.8) {
             if ((System.currentTimeMillis() - now) > time) {
-                slackIntegration.Create(payload);
+                slackIntegration.create(payload);
                 now = System.currentTimeMillis();
             }
         }

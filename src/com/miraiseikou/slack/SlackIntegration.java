@@ -21,10 +21,9 @@ import java.util.logging.Logger;
  * @author jvlima
  */
 public class SlackIntegration {
-    private static final Logger LOGGER = Logger.getLogger(SlackIntegration.class.getName());
     PropertiesManager manager = new PropertiesManager();
     
-    public void Create(Object pojo) {
+    public void create(Object pojo) {
         try {
             URL url = new URL(manager.getProperty("token"));
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
